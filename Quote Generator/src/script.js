@@ -1,7 +1,5 @@
-
-
 const URL = 'https://type.fit/api/quotes';
-// const PIC_URL = `https://api.unsplash.com/photos/random/?client_id=${config.ACCESS_KEY}&orientation=landscape&query='landscape'`
+const PIC_URL = `https://api.unsplash.com/photos/random/?client_id=${KEYS.ACCESS_KEY}&orientation=landscape&query='landscape'`
 var w = window.innerWidth;
 var h = window.innerHeight;
 
@@ -13,19 +11,15 @@ function fetchQuotes(url) {
     fetch(url)
         .then( (response) => response.json())
         .then( quotes => {
-
             var randomQuote = getRandomQuotes(quotes);
             quote.innerHTML = randomQuote.text;
-            author.innerHTML = randomQuote.author !== null ? (randomQuote.author):("Unknown");
-
+            author.innerHTML = randomQuote.author !== null ? ("~ " + randomQuote.author + " ~"):("Unknown");
         })
 }
 
 function getRandomQuotes(quotes){
-
     var randomIndex = Math.floor(Math.random() * 1643)
     return quotes[randomIndex]; 
-
 }
 
 fetchQuotes(URL);
@@ -33,7 +27,7 @@ fetchQuotes(URL);
 // fetch the background and place it into class="background"
 let bgDiv = document.getElementById('background');
 let bgImg = document.createElement("img");
-let imgCredit = document.createElement("p");
+let imgCredit = document.getElementById('imgCreds');
 let imgUrl = document.createElement("a");
 
 function fetchBgImage(url){
@@ -49,11 +43,9 @@ function fetchBgImage(url){
 //fetchBgImage(PIC_URL);
 bgImg.setAttribute("width", w);
 bgImg.setAttribute("height", h);
-imgCredit.setAttribute("id", "credit");
-imgUrl.innerText = "Source:Unsplash";
+imgUrl.innerText = "Source: Unsplash";
 bgDiv.appendChild(bgImg);
-bgDiv.appendChild(imgCredit);
-bgDiv.appendChild(imgUrl);
+imgCredit.appendChild(imgUrl);
 
 // implement the copy icon button 
 

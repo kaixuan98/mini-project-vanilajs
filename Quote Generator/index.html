@@ -8,29 +8,33 @@
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="stylesheet" href="./style.css">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Lato:ital,wght@0,400;1,300&display=swap" rel="stylesheet">
     </head>
     <body>
         <div id="background">
+            <!-- image gonna add here -->
         </div>
-
         <div id="modal">
-            <div class="titleContainer">
-                <h1>Quote Generator</h1>
-            </div>
-    
+            <h1>Random Quotes</h1>
+
             <div class="quoteContainer">
                 <p class="quote"></p>
                 <p class="author"></p>
-                <button> Copy </button>
             </div>
-    
+
             <div class="btnContainer">
-                <button id="quoteRefresh">Refresh Quote</button>
-                <button id="bgRefresh">Refresh Background</button>
+                <button id="quoteRefresh" class="btn">Refresh Quote</button>
+                <button id="bgRefresh" class="btn">Refresh Background</button>
+            </div>  
+
+            <div id="creds">
+                <p id="imgCreds"></p>
+                <p><a href="https://type.fit/api/quotes">Quote source </a></p>
             </div>
         </div>
-
-        <script src="./src/script.js" async defer></script>
-        <script src="./config.js" type="module" async defer></script>
+        <script src="./src/script.js"></script>
+        <script src="./src/apiKeys.js"></script>
     </body>
 </html>
