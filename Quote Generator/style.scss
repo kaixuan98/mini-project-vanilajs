@@ -1,0 +1,110 @@
+body{
+    margin: 0 ;
+    padding: 0;
+    position: relative;
+}
+
+#background{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute; 
+    top:0;
+    left:0;
+
+}
+
+#modal{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    border-radius: 5px;
+    z-index: 100;
+    position: absolute; 
+    top: 20vh;  
+    left: 20vw;
+    width: 60vw; 
+    height: 60vh;
+    padding: 0 10px 0 10px;
+    background-color: rgb(241, 241, 241);
+    box-shadow: 10px 10px 3px #e1e0e0;
+
+    h1{
+        font-family: 'DM Serif Display', serif;
+        font-size: 48px;
+    }
+
+    .quoteContainer{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        padding: 0 20px 0 20px;
+        height: 20vh;
+
+        .quote{
+            font-family: 'Lato', sans-serif;
+            font-size: 16px;
+            text-align: center;
+        }
+
+        .author{
+            font-family: 'Lato', sans-serif;
+            font-style: italic;
+            font-size: 16px;
+        }
+    }
+
+    .btnContainer{
+        display: flex;
+        flex-direction: row;
+        width: 50%;
+        justify-content: space-evenly;
+
+        .btn{
+            padding: 8px;
+            font-family: 'Lato', sans-serif;
+            background-color: black;
+            color: whitesmoke;
+            border: 1px black solid;
+            text-align: center;
+            border-radius: 3px;
+            cursor: pointer;
+            box-shadow: 3px 3px 3px   rgb(176, 176, 176);
+
+            &:hover{
+                color: black;
+                background-color: whitesmoke;
+            }
+
+            &:active {
+                background-color: whitesmoke;
+                box-shadow: none;
+                transform: translateY(1px);
+            }
+        }
+
+    }
+
+    #creds{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-self: center ;
+        margin-top: 16px;
+        p{
+            font-family: 'Lato', sans-serif;
+            margin: 3px auto 3px auto;
+            a{
+                color:  rgb(157, 157, 157);
+
+                &:hover{
+                    color: black;
+                }
+            }
+        }
+    }
+}
+
+
