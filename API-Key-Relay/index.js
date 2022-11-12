@@ -9,13 +9,13 @@ const unsplash = require("./unsplash");
 
 app.use(express.json());
 
-const whiteList = ['https://127.0.0.1','https://127.0.0.1:5500', 'https://127.0.0.1:3000' ];
+const whiteList = ['http://127.0.0.1','http://127.0.0.1:5500', 'http://127.0.0.1:3000', 'http://127.0.0.1:5500/Quote%20Generator/' ];
 const corsOptions = {
     origin: (origin, callback) => {
         if(!origin || whiteList.indexOf(origin) !== -1){
-                callback(null,true);
+            callback(null,true);
         }else{
-                callback(new Error("Not Allowed by CORS")); 
+            callback(new Error("Not Allowed by CORS")); 
         }
     },
     optionsSuccessStatus: 200

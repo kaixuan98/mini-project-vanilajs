@@ -1,5 +1,5 @@
 const URL = 'https://type.fit/api/quotes';
-const PIC_URL = `https://api.unsplash.com/photos/random/?client_id=${KEYS.ACCESS_KEY}&orientation=landscape&query='landscape'`
+const PIC_URL = 'http://127.0.0.1:3000/unsplash/landscape/motivation'
 var w = window.innerWidth;
 var h = window.innerHeight;
 
@@ -28,24 +28,22 @@ fetchQuotes(URL);
 let bgDiv = document.getElementById('background');
 let bgImg = document.createElement("img");
 let imgCredit = document.getElementById('imgCreds');
-let imgUrl = document.createElement("a");
 
 function fetchBgImage(url){
     fetch(url)
         .then( (response) => response.json())
         .then (pictureMeta => {
+            console.log(pictureMeta)
             bgImg.setAttribute("src", pictureMeta.urls.regular);
-            imgCredit.innerText = pictureMeta.user.name;
-            imgUrl.setAttribute("href", pictureMeta.links.html);
+            imgCredit.setAttribute("href", pictureMeta.links.html);
+            imgCredit.innerText = "Source: Unsplash - " + pictureMeta.user.name;
         })
 }
 
-//fetchBgImage(PIC_URL);
+fetchBgImage(PIC_URL);
 bgImg.setAttribute("width", w);
 bgImg.setAttribute("height", h);
-imgUrl.innerText = "Source: Unsplash";
 bgDiv.appendChild(bgImg);
-imgCredit.appendChild(imgUrl);
 
 // implement the copy icon button 
 
