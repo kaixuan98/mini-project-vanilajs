@@ -1,2 +1,4 @@
 config.js
-/API-Key-Relay/.env
+.env
+API-Key-Relay/apiKeys.js
+API-Key-Relay/node_modules
