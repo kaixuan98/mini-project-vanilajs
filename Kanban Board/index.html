@@ -6,24 +6,33 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Kanban Board</title>
     <link rel="stylesheet" href="./styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Caveat+Brush&family=Caveat:wght@400;500&family=EB+Garamond:wght@400;500;600&family=Over+the+Rainbow&family=Zeyada&display=swap" rel="stylesheet">
 </head>
 <body>
-    <div>
-        <h1>Kanban Board</h1> 
+    <div id="wholePage">
+        <h1 id="BoardTitle">Kanban Board</h1> 
         <div id="kanban">
             <!-- The board will be dynamically added to the html. Below is the structure -->
             <!-- <div class="kanban-col">
-                <h1 class="kanban-col-title"></h1>
-                <div class="kanban-col-items">
-                    <div class="kanban-col-item">
-                        <div class="kanban-col-itemInput" contenteditable=""></div>
+                    <h1 class="kanban-col-title"></h1>
+                    <div class="kanban-col-items">
+                        <div class="kanban-col-item">
+                            <div class="kanban-col-itemInput" contenteditable=""></div>
+                        </div>
                     </div>
-                </div>
                 <button class="kanban-col-addBtn"></button>
             </div> -->
         </div>
+        <p class="instructQ">How to use this board?</p>
+        <p class="instructA">
+            Add task by clicking the add task button for each section. 
+            Double click the task in each section will prompt a delete confirmation. 
+            Drag and drop to change the status of the task. </p>
+        <p class="instructA">Credits: Dcode <a href="https://youtu.be/ijQ6dCughW8">(Youtube)</a></p>
     </div>
     
-    <script type="text/javascript" src="./js/main.js" defer></script>
+    <script type="module" src="./js/main.js" ></script>
 </body>
 </html>

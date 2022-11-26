@@ -1,0 +1,124 @@
+$dark-primary : #0A0908; 
+$dark-secondary: #EAE0D5;
+$accent: #22333B;
+$accent2: #E2D9CA;
+
+$light-primary: $dark-secondary; 
+$light-secondary: $dark-primary;
+
+@mixin flex-center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+
+body{
+    padding: 0;
+    margin: 0;
+}
+
+
+#wholePage{
+    background-color: $light-primary;
+    height: 100vh; 
+    width: 100vw; 
+    @include flex-center();
+    flex-direction: column;
+}
+
+#BoardTitle{
+    @include flex-center();
+    font-family: 'EB Garamond', serif;
+    font-weight: 600;
+    margin: 0;
+    padding: 0 0 12px 0;
+    font-size: 48px ;
+    color: $light-secondary;
+}
+
+#kanban{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    border: $light-secondary solid 2px;
+    width: 80%;
+    height: 70%;
+}
+
+.instructQ, .instructA{
+    @include flex-center();
+    font-family: 'EB Garamond', serif;
+    font-size: 16px;
+    margin: 0;
+    color: $light-secondary; 
+    opacity: 0.5;
+    width: 80%;
+    padding-top: 4px;
+    text-align: center;
+}
+
+
+.kanban-col{
+    border: $light-secondary solid 2px;
+    @include flex-center();
+    flex-direction: column;
+    width: 100%;
+    height: 100%;
+}
+
+.kanban-col-items{
+    height: 80%;
+    width: 100%;
+}
+
+.kanban-col-title{
+    color: $light-secondary;
+    font-family: 'EB Garamond', serif;
+}
+
+
+.kanban-col-itemInput{
+    background-color: $accent2;
+    margin: 8px;
+    border-radius: 10px;
+    filter: drop-shadow(2px 3px 2px rgb(133, 132, 132));
+    text-align: left;
+    font-size: 20px;
+    font-family: 'Over the Rainbow', cursive;
+    padding: 0 12px 0 12px;
+    cursor:default; 
+
+    &:focus{
+        outline: none;
+        border-bottom: $light-secondary 2px solid;
+    }
+}
+
+.kanban-col-addBtn{
+    color: $light-primary;
+    background-color: $accent;
+    border: $accent 2px solid;
+    width: 100px; 
+    height: 50px;
+    border-radius: 30px;
+    margin: 10px;
+    cursor: pointer;
+
+    &:hover{
+        color: $accent;
+        background-color: $light-primary;
+    }
+}
+
+.kanban-dropzone{
+    height: 5px;
+    transition: background 0.15s, height 0.15s;
+}
+
+.kanban-dropzone-active {
+	height: 10px;
+	background: rgba(0, 0, 0, 0.25);
+}
+
+

@@ -1,21 +1,21 @@
 export default class KanbanAPI{
     // Given a columnId, we need to get back the items in the column
-    getItems(colId){
+    static getItems(colId){
         const col = read().find(column => column.id === colId);
 
         if(!col){
             return [];
         }
 
-        return col.items
+        return col.items;
     }
 
-    // insertItem 
-    insertItem(colId, content){
+    // insertItem - will return the added item as an object 
+    static insertItem(colId, content){
         const data = read();
         const col = data.find(column => column.id === colId);
         const item = {
-            id: (Math.random() * 100000),
+            id: Math.ceil(Math.random() * 100000),
             content: content
         }
 
@@ -32,7 +32,7 @@ export default class KanbanAPI{
 
     // updateItem
     // newProps: { columnId, newPosition, content}
-    updateItem(itemId, newProps){
+    static updateItem(itemId, newProps){
         const data = read();
 
         // use the item to find the column 
@@ -55,7 +55,7 @@ export default class KanbanAPI{
         item.content = newProps.content !== undefined ? newProps.content: item.content;  
 
         // update the position(Column and incolumn arrangement )
-        if(newProps.columnId !== null && newProps.newPosition !== null){
+        if(newProps.columnId !== undefined && newProps.newPosition !== undefined){
             const targetColumn = data.find(col => col.id === newProps.columnId)
 
             if(!targetColumn){
@@ -74,9 +74,9 @@ export default class KanbanAPI{
 
     
     // deleteItem
-    deleteItem(itemId){
+    static deleteItem(itemId){
         const data = read();
-        for( col of data){
+        for(const col of data){
             const item = col.items.find(item => item.id === itemId );
 
             if(item){
