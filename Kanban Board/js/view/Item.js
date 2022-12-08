@@ -7,7 +7,7 @@ export default class Item{
 
         this.element = {};
         this.element.root = Item.createRoot();
-        this.element.input = this.element.root.querySelector('.kanban-col-itemInput')
+        this.element.input = this.element.root.querySelector('.kanban-col-itemInput');
 
         this.element.root.dataset.id = id; 
         this.element.input.textContent = content; 

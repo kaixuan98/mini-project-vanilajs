@@ -6,6 +6,7 @@ const app = express();
 const port = 3000; 
 
 const unsplash = require("./unsplash");
+const spoonacular = require("./spoonacular")
 
 app.use(express.json());
 
@@ -31,6 +32,7 @@ const limiter = rateLimit({
 app.use(limiter);
 
 app.use("/unsplash", unsplash);
+app.use("/spoonacular", spoonacular);
 
 //test route
 app.use('/', (req, res) => {

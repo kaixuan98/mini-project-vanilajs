@@ -7,32 +7,17 @@ body {
   background-color: #EAE0D5;
   height: 100vh;
   width: 100vw;
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
 }
 
 #BoardTitle {
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  font-family: 'EB Garamond', serif;
+  justify-content: center;
+  align-items: center;
+  font-family: "EB Garamond", serif;
   font-weight: 600;
   margin: 0;
   padding: 0 0 12px 0;
@@ -41,31 +26,19 @@ body {
 }
 
 #kanban {
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-orient: horizontal;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: row;
-          flex-direction: row;
-  -ms-flex-pack: distribute;
-      justify-content: space-around;
+  flex-direction: row;
+  justify-content: space-around;
   border: #0A0908 solid 2px;
   width: 80%;
   height: 70%;
 }
 
 .instructQ, .instructA {
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  font-family: 'EB Garamond', serif;
+  justify-content: center;
+  align-items: center;
+  font-family: "EB Garamond", serif;
   font-size: 16px;
   margin: 0;
   color: #0A0908;
@@ -77,19 +50,10 @@ body {
 
 .kanban-col {
   border: #0A0908 solid 2px;
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
   width: 100%;
   height: 100%;
 }
@@ -101,22 +65,20 @@ body {
 
 .kanban-col-title {
   color: #0A0908;
-  font-family: 'EB Garamond', serif;
+  font-family: "EB Garamond", serif;
 }
 
 .kanban-col-itemInput {
   background-color: #E2D9CA;
   margin: 8px;
   border-radius: 10px;
-  -webkit-filter: drop-shadow(2px 3px 2px #858484);
-          filter: drop-shadow(2px 3px 2px #858484);
+  filter: drop-shadow(2px 3px 2px rgb(133, 132, 132));
   text-align: left;
   font-size: 20px;
-  font-family: 'Over the Rainbow', cursive;
+  font-family: "Over the Rainbow", cursive;
   padding: 0 12px 0 12px;
   cursor: default;
 }
-
 .kanban-col-itemInput:focus {
   outline: none;
   border-bottom: #0A0908 2px solid;
@@ -132,7 +94,6 @@ body {
   margin: 10px;
   cursor: pointer;
 }
-
 .kanban-col-addBtn:hover {
   color: #22333B;
   background-color: #EAE0D5;
@@ -140,12 +101,10 @@ body {
 
 .kanban-dropzone {
   height: 5px;
-  -webkit-transition: background 0.15s, height 0.15s;
   transition: background 0.15s, height 0.15s;
 }
 
 .kanban-dropzone-active {
   height: 10px;
   background: rgba(0, 0, 0, 0.25);
-}
-/*# sourceMappingURL=styles.css.map */
+}/*# sourceMappingURL=styles.css.map */
