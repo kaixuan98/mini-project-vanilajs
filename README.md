@@ -3,6 +3,7 @@ This is a library of smaller projects or a single component that is build with v
 
 
 ### Mini Project 1 - Quote Generator
+---
 This mini project that allow use to generate random quotes. 
 
 
@@ -23,5 +24,33 @@ How to run this project?
 1. fork this repo 
 2. cd into API-Key-Relay and run `npm run dev` (Remember to add .env file and provided you Unsplash API access code) 
 3. Compile a SASS compiler on vsCode 
-4. Open a new terminal and Run the `index.js` file in Quote Generator.
+4. Open a new terminal and Run the `index.js` file in Quote Generator folder.
+
+### Mini Project 2 - Kanban Board 
+---
+THis mini project is a follow on project from [this video](https://www.youtube.com/watch?v=ijQ6dCughW8&themeRefresh=1).
+
+**Lang Used:** HTML/CSS, JavaScript, SCSS
+
+**Concept learned:** Local storage, ES6 Class and Modules, Event Handling and Propagration
+
+How to run this project?
+1. fork this repo 
+2. Compile a SASS compiler on vsCode 
+3. Open a new terminal and Run the `index.js` file in Kanban Board folder
+
+### Mini Project 3 - Recipe Rating
+---
+This is a mini project that create a simple recipe web explorer. User are able to refresh to look at new recipes, rate their fav receipes. 
+
+**UI Component built:** Card with images, button, star rater, card gallery, card carousel
+
+**Lang Used:** HTML/CSS, JavaScript, SCSS
+
+**Concept learned:** ES6 Class and Modules to create dynamic web component, Event Handling and Propagration
+
+How to run this project?
+1. fork this repo 
+2. Compile a SASS compiler on vsCode 
+3. Open a new terminal and Run the `index.js` file in Recipe Rating folder.
 
