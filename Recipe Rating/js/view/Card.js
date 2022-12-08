@@ -84,7 +84,7 @@ export default class Card{
 
 
         const onClick = () => {
-            // TODO: request for the next page ( my own API )
+            window.open(content.sourceUrl, '_blank');
         }
 
         this.element.button.addEventListener("click", onClick); 

@@ -73,6 +73,11 @@ nav{
     background-color: #df9c68;
     border: #df9c68 2px solid;
     color: #F7F6DC;
+    cursor: pointer;
+
+    &:hover{
+        background-color: #db7425;
+    }
 }
 
 .stcomp{
