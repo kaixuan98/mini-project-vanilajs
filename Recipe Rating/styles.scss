@@ -1,3 +1,8 @@
+$primarycolor: #F7F6DC;
+$secondarycolor: #df9c68; 
+$secondarycolor-hover: #db7425;
+
+
 body{
     margin: 0;
     padding: 0;
@@ -11,36 +16,37 @@ nav{
     color: #F7F6DC;
 }
 
-#list{
-    margin-top: 5vh;
+#layout{
+    margin: 0 1vw 0 1vw;
 }
 
+// card
+
+// phone size potrait by default
 .recipe-card-container{
     display: flex;
-    flex-direction: row;
-    margin: 12px 5vw 12px 5vw;
-    padding: 24px;
-    justify-content: space-around;
+    flex-direction: column;
+    margin: 12px;
+    justify-content: center;
     align-items: center;
     border-radius: 10px;
     background-color: #F7F6DC;
 }
 
 .recipe-img-container{
-    margin-right: 12px;
-    width: 30%; 
     background-color: #F7F6DC;
+    padding: 12px 12px 0 12px; 
+    border-radius: 10px;
+}
 
-    img{
-        width: 100%;
-        height: 80%;
-        border-radius: 5%;
-    }
+.recipe-img{
+    width: 100%;
+    border-radius: 3%;
 }
 
 .recipe-content-container{
     display: flex;
-    width: 70%; 
+    padding: 12px;
     flex-direction: column;
     align-items: flex-start;
     justify-content: center;
@@ -49,7 +55,7 @@ nav{
 
 .recipe-title{
     font-family: 'Yeseva One', cursive;
-    font-size: 24px;
+    font-size: 20px;
     margin-top: 0; 
 }
 
@@ -64,19 +70,27 @@ nav{
 }
 
 .recipe-summary{
-    font-size: 16px;
+    font-size: 14px;
 }
 
-.recipe-detail-btn{
+
+#btnGroup{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    margin: 12px 5vw 12px 5vw;
+}
+
+.btn{
     padding: 5px;
     border-radius: 5px;
-    background-color: #df9c68;
-    border: #df9c68 2px solid;
-    color: #F7F6DC;
+    background-color: $secondarycolor;
+    border: $secondarycolor 2px solid;
+    color: $primarycolor;
     cursor: pointer;
 
     &:hover{
-        background-color: #db7425;
+        background-color: $secondarycolor-hover;
     }
 }
 
@@ -85,7 +99,7 @@ nav{
 }
 
 .star{
-    background: lightgrey;
+    background: rgb(121, 121, 121);
     clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%);
     display: inline-block;
     height: 30px;
@@ -97,4 +111,69 @@ nav{
 
 .star-filled{
     background: rgb(254, 195, 0);
+}
+
+// layout - list by default
+
+// grid layout on phone (phone size is by default)
+.gallery{
+    display: grid;
+    grid-template-columns: 1fr 1fr; // has two column
+    width: 100%;
+}
+
+
+// responsive 
+
+// mobile size - by default
+
+// tablet size 
+@media screen and (max-width: 960px) and (min-width: 768px){
+
+}
+
+// desktop size
+@media screen and (max-width: 1920px) and (min-width: 1024px){
+    #layout{
+        margin: 0 6vw 0 5vw;
+    }
+    // each card will have a landscape view(in phone size - potrait view)
+    .recipe-card-container{
+        flex-direction: row;
+        justify-content: space-between;
+        padding: 12px;
+    }
+    
+    .recipe-img-container{
+        padding-right: 12px;
+        width: 30%
+    }
+    
+    .recipe-content-container{
+        width: 70%;
+    }
+
+    // if it is desktop size, the gallery will be in 3 column
+    .gallery{
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
+        width: 100%;
+
+        // in the gallery, the container will be turn back to potrait mode
+        .recipe-card-container{
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .recipe-img-container{
+            width: 100%;
+            height: 40%;
+            margin-bottom: 32px ;
+        }
+
+        .recipe-content-container{
+            width: 100%;
+            height: 60%;
+        }
+    }
 }
