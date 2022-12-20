@@ -16,7 +16,7 @@ This mini project that allow use to generate random quotes.
 **API Used:** [Unsplash](https://unsplash.com/developers) and [QuoteAPI](https://type.fit/api/quotes)
 
 
-ShowCase: 
+**ShowCase:**
 https://user-images.githubusercontent.com/47827034/201476019-0230b6bf-f9ca-448b-8346-d229406b5296.mov
 
 
@@ -43,13 +43,15 @@ How to run this project?
 ---
 This is a mini project that create a simple recipe web explorer. User are able to refresh to look at new recipes, rate their fav receipes. The website allow user to toggle between list and gallery view. The website also support responsive layout. 
 
-The behaviour of the website is shown in the following ![video](https://youtu.be/BTxKUVPtCg8). 
-
-**UI Component built:** Card with images, button, star rater, card gallery, 
+**UI Component built:** Card with images, button, star rater, card gallery 
 
 **Lang Used:** HTML/CSS, JavaScript, SCSS
 
-**Concept learned:** ES6 Class and Modules to create dynamic web component, Event Handling and Propagration, API Fetching (Spoonacular)
+**Concept learned:** ES6 Class and Modules to create dynamic web component, Event Handling and Propagation, API Fetching 
+
+**API Used:** [Spoonacular API](https://spoonacular.com/food-api)
+
+**Show Case:** [video](https://youtu.be/BTxKUVPtCg8)
 
 
 How to run this project?
