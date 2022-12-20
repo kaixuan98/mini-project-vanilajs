@@ -41,16 +41,18 @@ How to run this project?
 
 ### Mini Project 3 - Recipe Rating
 ---
-This is a mini project that create a simple recipe web explorer. User are able to refresh to look at new recipes, rate their fav receipes. 
+This is a mini project that create a simple recipe web explorer. User are able to refresh to look at new recipes, rate their fav receipes. The website allow user to toggle between list and gallery view. The website also support responsive layout. 
 
-**UI Component built:** Card with images, button, star rater, card gallery, card carousel
+The behaviour of the website is shown in the following ![video](https://youtu.be/BTxKUVPtCg8). 
+
+**UI Component built:** Card with images, button, star rater, card gallery, 
 
 **Lang Used:** HTML/CSS, JavaScript, SCSS
 
-**Concept learned:** ES6 Class and Modules to create dynamic web component, Event Handling and Propagration
+**Concept learned:** ES6 Class and Modules to create dynamic web component, Event Handling and Propagration, API Fetching (Spoonacular)
+
 
 How to run this project?
 1. fork this repo 
 2. Compile a SASS compiler on vsCode 
 3. Open a new terminal and Run the `index.js` file in Recipe Rating folder.
-
