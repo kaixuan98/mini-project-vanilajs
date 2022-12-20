@@ -2,6 +2,7 @@ import {removeTags} from "../utility/removeTags.js";
 import {splitSentences} from '../utility/splitSentences.js'
 import Stars from "./Stars.js";
 
+// the card need to be responsive depends on ther offset width
 export default class Card{
     constructor(id, content){
 
@@ -9,11 +10,11 @@ export default class Card{
         this.rating = 0;
         this.totalStars = 5;
         this.element.root = Card.createRoot();
-        this.element.img = this.element.root.querySelector('#recipe-img');
+        this.element.img = this.element.root.querySelector('.recipe-img');
         this.element.title = this.element.root.querySelector('.recipe-title');
         this.element.source = this.element.root.querySelector('.recipe-source');
         this.element.summary = this.element.root.querySelector('.recipe-summary');
-        this.element.button = this.element.root.querySelector('.recipe-detail-btn');
+        this.element.button = this.element.root.querySelector('.btn');
 
         this.element.root.dataset.id = id;
         this.element.title.textContent = content.title 
@@ -89,11 +90,6 @@ export default class Card{
 
         this.element.button.addEventListener("click", onClick); 
 
-
-
-        
-
-
     }
 
     static createRoot(){
@@ -103,14 +99,14 @@ export default class Card{
         return range.createContextualFragment(`
             <div class="recipe-card-container">
                 <div class="recipe-img-container">
-                    <img id='recipe-img'>
+                    <img class='recipe-img'>
                 </div>
                 <div class="recipe-content-container">
                     <h1 class="recipe-title"></h1>
                     <p class="recipe-source"></p>
                     <p class="recipe-summary"></p>
                     <div class="recipe-star-rate-container"></div>
-                    <button class="recipe-detail-btn">Full Recipe</button>
+                    <button class="btn">Full Recipe</button>
                 </div>
             </div>
         `).children[0]

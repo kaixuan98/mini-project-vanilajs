@@ -12,23 +12,32 @@
 </head>
 <body>
     <nav>Rate A Recipe</nav>
-    <div id="list">
-        <!-- recipe card, will be build in js when in gallery phase -->
-        <!-- <div class="recipe-card-container">
-            <div class="recipe-img-container">
-                <img src="./pizza.jpeg">
+    <main>
+        <div id="btnGroup">
+            <button class="btn" data-view="list" id="listView">List View</button>
+            <button class="btn" data-view="gallery" id="'galleryView">Gallery View</button>
+        </div>
+        <div id="layout"> 
+            <div class="list">
+                <!-- recipe card, will be build in js when in gallery phase -->
+                <!-- <div class="recipe-card-container">
+                    <div class="recipe-img-container">
+                        <img src="./pizza.jpeg">
+                    </div>
+                    <div class="recipe-content-container">
+                        <h1 class="recipe-title">Easy Cheesy Pizza Casserole</h1>
+                        <p class="recipe-source">Recipe From foodista.com</p>
+                        <p class="recipe-summary">
+                            Forget going out to eat or ordering takeout every time you crave Mediterranean food. Try making Easy Cheesy Pizza Casserole at home. 
+                        </p>
+                        <div class="recipe-star-rate-container"></div>
+                        <button class="recipe-detail-btn">Full Recipe</button>
+                    </div>
+                </div> -->
             </div>
-            <div class="recipe-content-container">
-                <h1 class="recipe-title">Easy Cheesy Pizza Casserole</h1>
-                <p class="recipe-source">Recipe From foodista.com</p>
-                <p class="recipe-summary">
-                    Forget going out to eat or ordering takeout every time you crave Mediterranean food. Try making Easy Cheesy Pizza Casserole at home. 
-                </p>
-                <div class="recipe-star-rate-container"></div>
-                <button class="recipe-detail-btn">Full Recipe</button>
-            </div>
-        </div> -->
-    </div>
+        </div>
+    </main>
+    <script  src="./sampledata.js" ></script>
     <script type="module" src="./js/index.js" ></script>
 </body>
 </html>
