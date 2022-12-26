@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./styles/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;500;600&display=swap" rel="stylesheet">
+    <title>Multi Step Form</title>
+</head>
+<body>
+    <div id="page">
+        <!-- progress bar start -->
+        <div class="progress-bar">
+            <div class="progress-bar__step">
+                <div class="progress-bar__icon" data-step="1">1</div>
+                <div class="progress-bar__label">Customer</div>
+            </div>
+            <div class="progress-bar__line"></div>
+            <div class="progress-bar__step">
+                <div class="progress-bar__icon" data-step="2">2</div>
+                <div class="progress-bar__label">Shipping</div>
+            </div>
+            <div class="progress-bar__line"></div>
+            <div class="progress-bar__step">
+                <div class="progress-bar__icon" data-step="3">3</div>
+                <div class="progress-bar__label">Payment</div>
+            </div>
+            <div class="progress-bar__line"></div>
+            <div class="progress-bar__step">
+                <div class="progress-bar__icon" data-step="4">4</div>
+                <div class="progress-bar__label">Review</div>
+            </div>
+        </div>
+        <!-- progress bar end  -->
+        <form class="form">
+            <div class="form__page">
+                <h3 class="form__title">Customer Info</h3>
+                <button type="button" class="form__page--button" data-next>Next</button>
+            </div>
+            <div class="form__page">
+                <h3 class="form__title">Shipping Address</h3>
+                <button type="button" class="form__page--button" data-prev>Prev</button>
+                <button type="button" class="form__page--button" data-next>Next</button>
+            </div>
+            <div class="form__page">
+                <h3 class="form__title">Payment Method</h3>
+                <button type="button" class="form__page--button" data-prev>Prev</button>
+                <button type="submit" class="form__page--button">Submit</button>
+            </div>
+        </form>
+    </div>
+    <script src="./js/main.js"></script>
+</body>
+</html>
