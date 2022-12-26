@@ -76,3 +76,33 @@
 .form__page--active{
     display: block;
 }
+
+.form__group{
+    display: flex;
+}
+
+// the form group will be up and down
+.form__group--column{
+    flex-direction: column;
+}
+
+// the form group will be left and right
+
+
+// inputs 
+.input-group{
+    display: flex;
+    flex-direction: column;
+}
+
+.input-group--row{
+    display: flex;
+    flex-direction: row;
+}
+
+.input-group__help{
+    font-size: 0.75em;
+    color: #afaeae;
+
+}
+
