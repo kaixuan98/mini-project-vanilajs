@@ -2,6 +2,7 @@ const page = document.querySelector("#page");
 const multiStepForm = document.querySelector(".form");
 const formSteps = [...document.querySelectorAll('.form__page')]; 
 const progressSteps = [...document.querySelectorAll('.progress-bar__step')];
+const reviewPage = document.querySelector('.form__review');
 
 
 // 1. set current active step 
@@ -16,6 +17,7 @@ if (currentStep < 0 ){
     showCurrentStep();
     showProgress();
 }
+
 
 // TODO: add click event on the progress bar to go back and forth
 
@@ -45,6 +47,27 @@ multiStepForm.addEventListener("click" , (e) => {
         showProgress();
     }
 
+    if(currentStep === 3){
+        const sectionsFilledInput = getFilledInSections();
+        const personalSection = createReviewSection(sectionsFilledInput.personal);
+        const shippingSection = createReviewSection(sectionsFilledInput.shipping);
+        const paymentSection = createReviewSection(sectionsFilledInput.payment);
+
+        // personalSection.setAttribute('class', "section-card");
+        // shippingSection.setAttribute('class', "section-card");
+        // paymentSection.setAttribute('class', "section-card");
+
+        console.log(personalSection);
+        console.log(shippingSection);
+        console.log(paymentSection);
+
+        reviewPage.appendChild(personalSection);
+        reviewPage.appendChild(shippingSection);
+        reviewPage.appendChild(paymentSection);
+
+        // add a button to submit
+    }
+
 })
 
 //  helper functions
@@ -61,6 +84,60 @@ function showProgress(){
         step.classList.toggle('progress-bar__step--inactive', index > currentStep);
     })
 }
+
+function getFilledInSections(){
+    let personal = []; 
+    let shipping =  [];
+    let payment = [];
+    // form step is each form page 
+    formSteps.forEach( (step, index) => {
+        const formGroup = step.querySelector('.form__group');
+        if(index === 0){ // first page is one section
+            personal = [...formGroup.querySelectorAll('.input-group')];
+        }else if(index === 1){ // second page is another section
+            shipping = [...formGroup.querySelectorAll('.input-group')];
+        }else{
+            payment = [...formGroup.querySelectorAll('.input-group')];
+        }
+    })
+    return { personal:personal, shipping:shipping, payment:payment};
+}
+
+
+// each section is a card 
+function createReviewSection(sectionData){
+    const section = document.createDocumentFragment();
+
+    // looping the array
+    sectionData.forEach( inputGroup => {
+        // get the label and value
+        const label = inputGroup.querySelector('.input-group__label').innerText;
+        const value = inputGroup.querySelector('.input-group__input').value;
+        // create a div for label and value and wrap it in a div 
+        const inputShowCase = document.createElement('div');
+        const inputShowCaseLabel = document.createElement('p');
+        const inputShowCaseValue = document.createElement('p');
+
+        inputShowCase.setAttribute('class', 'input-showcase');
+        inputShowCaseLabel.setAttribute('class', 'input-showcase__label');
+        inputShowCaseValue.setAttribute('class', 'input-showcase__value');
+
+        inputShowCaseLabel.innerText = label;
+        inputShowCaseValue.innerText = value;
+
+        // append to the outerdiv
+        inputShowCase.appendChild(inputShowCaseLabel);
+        inputShowCase.appendChild(inputShowCaseValue);
+
+        // append to the section 
+        section.appendChild(inputShowCase);
+    })
+
+
+    return section;
+
+}
+
 
 
 
