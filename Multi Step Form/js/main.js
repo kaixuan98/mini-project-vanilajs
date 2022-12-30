@@ -19,46 +19,51 @@ if (currentStep < 0 ){
 }
 
 // add click event on the next and prev button (event bubbling to multisetp form)
-multiStepForm.addEventListener("click" , (e) => {
-    let incrementor;
-    if (e.target.matches('[data-next]')){
-        incrementor = 1;
-    }else if (e.target.matches('[data-prev]')){
-        incrementor = -1; 
-    }else if(e.target.type === 'submit'){
-        // if user pressed submit, it will send the response to the backend 
-        e.preventDefault();
-        const formData = new FormData(multiStepForm);
-        fetch('http://localhost:3000/form/submit', {
-                    method: 'POST',
-                    body: formData,
-                }).then(function(response){
-                    return page.appendChild(createModal(response.status));
-                }).catch(function(error){
-                    console.log(error)
-                })
-    }
-    else{
-        incrementor = 0; //other than button, it will not increment
-    }
+multiStepForm.addEventListener("click" , async function (e) {
+        let incrementor;
+        let res ; 
+        if (e.target.matches('[data-next]')) {
+            incrementor = 1;
+        } else if (e.target.matches('[data-prev]')) {
+            incrementor = -1;
+        } else if (e.target.type === 'submit') {
+            // if user pressed submit, it will send the response to the backend 
+            e.preventDefault();
+            const formData = new FormData(multiStepForm);
+            res = await fetch('http://localhost:3000/form/submit', {
+                method: 'POST',
+                body: formData,
+            }).then(function (response) {
+                // page.appendChild(createModal(response.status));
+                return response.status;
+            }).catch(function (error) {
+                console.log(error);
+            });
+        }
+        else {
+            incrementor = 0; //other than button, it will not increment
+        }
 
-    // validate the form before move to the next step
-    if(currentStep < 3 ){ // this when the step is before review
-        const inputs = [...formSteps[currentStep].querySelectorAll('input')]
-        const allValid = inputs.every(input => input.reportValidity()); 
-        if(allValid){
+        // validate the form before move to the next step
+        if (currentStep < 3) { // this when the step is before review
+            const inputs = [...formSteps[currentStep].querySelectorAll('input')];
+            const allValid = inputs.every(input => input.reportValidity());
+            if (allValid) {
+                currentStep += incrementor;
+                showCurrentStep();
+                showProgress();
+            }
+        } else { // at review step
             currentStep += incrementor;
             showCurrentStep();
             showProgress();
         }
-    }else{ // at review step
-        currentStep += incrementor;
-        showCurrentStep();
-        showProgress();
-    }
 
-
-})
+        if(res === 200){
+            console.log([...createModal(res).children]);
+            page.appendChild(createModal(res));
+        }
+    })
 
 //  helper functions
 function showCurrentStep(){
@@ -214,7 +219,6 @@ function createReviewSection(sectionData){
 }
 
 function createModal(status){
-    console.log(status);
     const modal = document.createDocumentFragment();
 
     const modalDiv = document.createElement('div');
@@ -230,11 +234,17 @@ function createModal(status){
         modalDiv.classList.add('modal--success');
         modalIcon.classList.add('modal__icon--success');
         modalMsg.classList.add('modal__msg--success');
+        modalMsg.innerText='Order Processes Successfully!'
     }else{
         modalDiv.classList.add('modal--error')
         modalIcon.classList.add('modal__icon--error');
         modalMsg.classList.add('modal__msg--error');
+        modalMsg.innerText='Error during transaction. Please try again later.'
     }
+
+    modal.appendChild(modalDiv);
+    modal.appendChild(modalIcon);
+    modal.appendChild(modalMsg);
 
     return modal;
 }
