@@ -1,8 +1,10 @@
+
 const page = document.querySelector("#page");
 const multiStepForm = document.querySelector(".form");
 const formSteps = [...document.querySelectorAll('.form__page')]; 
 const progressSteps = [...document.querySelectorAll('.progress-bar__step')];
 const reviewPage = document.querySelector('.form__review');
+
 
 // find and set the current step in my form
 let currentStep = formSteps.findIndex(step => {
@@ -23,7 +25,20 @@ multiStepForm.addEventListener("click" , (e) => {
         incrementor = 1;
     }else if (e.target.matches('[data-prev]')){
         incrementor = -1; 
-    }else{
+    }else if(e.target.type === 'submit'){
+        // if user pressed submit, it will send the response to the backend 
+        e.preventDefault();
+        const formData = new FormData(multiStepForm);
+        fetch('http://localhost:3000/form/submit', {
+                    method: 'POST',
+                    body: formData,
+                }).then(function(response){
+                    return page.appendChild(createModal(response.status));
+                }).catch(function(error){
+                    console.log(error)
+                })
+    }
+    else{
         incrementor = 0; //other than button, it will not increment
     }
 
@@ -41,6 +56,8 @@ multiStepForm.addEventListener("click" , (e) => {
         showCurrentStep();
         showProgress();
     }
+
+
 })
 
 //  helper functions
@@ -122,6 +139,7 @@ function showReview(){
     return reviewFragment; 
 }
 
+
 function showProgress(){
     progressSteps.forEach( (step,index) => {
         step.classList.toggle('progress-bar__step--active', index === currentStep)
@@ -152,7 +170,6 @@ function getFilledInSections(){
 // each section is a card 
 function createReviewSection(sectionData){
     const section = document.createDocumentFragment();
-
     // looping the array
     sectionData.forEach( inputGroup => {
         // get the label and value
@@ -197,6 +214,7 @@ function createReviewSection(sectionData){
 }
 
 function createModal(status){
+    console.log(status);
     const modal = document.createDocumentFragment();
 
     const modalDiv = document.createElement('div');
@@ -218,7 +236,7 @@ function createModal(status){
         modalMsg.classList.add('modal__msg--error');
     }
 
-    return modal
+    return modal;
 }
 
 

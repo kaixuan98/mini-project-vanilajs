@@ -47,7 +47,5 @@ app.use('/', (req, res) => {
         .end();
 });
 
-// unsplash route 
-
 app.listen(port , () => console.log(`App listening at port ${port}`));
 
