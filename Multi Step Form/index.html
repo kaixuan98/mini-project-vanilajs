@@ -5,7 +5,9 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="./styles/style.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cardo:wght@400;700&family=Josefin+Sans:ital,wght@0,300;0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
     <title>Multi Step Form</title>
 </head>
 <body>
@@ -51,13 +53,13 @@
                     </div>
                     <div class="input-group">
                         <label class="input-group__label" for="mobile">Contact Number</label>
-                        <input class="input-group__input" type="tel" name="mobile" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" required>
+                        <input class="input-group__input" type="tel" name="mobile" pattern="[0-9]{3}[0-9]{3}[0-9]{4}" required>
                         <span class="input-group__help">
-                            Example: 123-456-7890.
+                            Example: 1234567890.
                         </span>
                     </div>
                 </div>
-                <button type="button" class="form__page--button" data-next>Next</button>
+                <button type="button" class="form__button" data-next>Next</button>
             </div>
             <div class="form__page">
                 <h3 class="form__title">Shipping Address</h3>
@@ -100,8 +102,8 @@
                         </span>
                     </div>
                 </div>
-                <button type="button" class="form__page--button" data-prev>Prev</button>
-                <button type="button" class="form__page--button" data-next>Next</button>
+                <button type="button" class="form__button" data-prev>Prev</button>
+                <button type="button" class="form__button" data-next>Next</button>
             </div>
             <div class="form__page">
                 <h3 class="form__title">Payment</h3>
@@ -130,8 +132,8 @@
                         <input class="input-group__input" type="text" name="CVV" required>
                     </div>
                 </div>
-                    <button type="button" class="form__page--button" data-prev>Prev</button>
-                    <button type="button" class="form__page--button" data-next>Next</button>
+                    <button type="button" class="form__button" data-prev>Prev</button>
+                    <button type="button" class="form__button" data-next>Next</button>
             </div>
             <div class="form__review">
             </div>

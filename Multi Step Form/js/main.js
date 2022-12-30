@@ -4,77 +4,122 @@ const formSteps = [...document.querySelectorAll('.form__page')];
 const progressSteps = [...document.querySelectorAll('.progress-bar__step')];
 const reviewPage = document.querySelector('.form__review');
 
-
-// 1. set current active step 
-// find the current step in my form
+// find and set the current step in my form
 let currentStep = formSteps.findIndex(step => {
     return step.classList.contains("form__page--active"); 
 })
 
-// whether is there an active class
+// if cannot find active class then set the first be the default first step
 if (currentStep < 0 ){
     currentStep = 0; 
     showCurrentStep();
     showProgress();
 }
 
-
-// TODO: add click event on the progress bar to go back and forth
-
-
 // add click event on the next and prev button (event bubbling to multisetp form)
 multiStepForm.addEventListener("click" , (e) => {
-    // when click the next button it will return a button
     let incrementor;
     if (e.target.matches('[data-next]')){
         incrementor = 1;
-    }else{
+    }else if (e.target.matches('[data-prev]')){
         incrementor = -1; 
+    }else{
+        incrementor = 0; //other than button, it will not increment
     }
-    
-    // this is to prevent form refreshed when click to fill in 
-    // since we are handling the click at the parent
-    if(incrementor === null) return;
 
     // validate the form before move to the next step
-    // the values are required, clean(right formate)
-    const inputs = [...formSteps[currentStep].querySelectorAll('input')]
-    // validity is in combination with required in html tag
-    const allValid = inputs.every(input => input.reportValidity()); 
-    if(allValid){
+    if(currentStep < 3 ){ // this when the step is before review
+        const inputs = [...formSteps[currentStep].querySelectorAll('input')]
+        const allValid = inputs.every(input => input.reportValidity()); 
+        if(allValid){
+            currentStep += incrementor;
+            showCurrentStep();
+            showProgress();
+        }
+    }else{ // at review step
         currentStep += incrementor;
         showCurrentStep();
         showProgress();
     }
-
-    if(currentStep === 3){
-        const sectionsFilledInput = getFilledInSections();
-        const personalSection = createReviewSection(sectionsFilledInput.personal);
-        const shippingSection = createReviewSection(sectionsFilledInput.shipping);
-        const paymentSection = createReviewSection(sectionsFilledInput.payment);
-
-        // personalSection.setAttribute('class', "section-card");
-        // shippingSection.setAttribute('class', "section-card");
-        // paymentSection.setAttribute('class', "section-card");
-
-        console.log(personalSection);
-        console.log(shippingSection);
-        console.log(paymentSection);
-
-        reviewPage.appendChild(personalSection);
-        reviewPage.appendChild(shippingSection);
-        reviewPage.appendChild(paymentSection);
-
-        // add a button to submit
-    }
-
 })
 
 //  helper functions
 function showCurrentStep(){
-    formSteps.forEach( (step, index) => {
+    const pages = [...multiStepForm.children]
+    pages.forEach( (step, index) => {
+        if(index >= 3 && index === currentStep){
+            const reviewFrag = showReview();
+            if(step.childElementCount !== 0){
+                // if users go back and update, need to remove all the children before append the new one 
+                // OPTIMIZE: try not to remove the child, just update them?
+                while(step.firstChild){
+                    step.removeChild(step.firstChild);
+                }
+            }
+            reviewPage.appendChild(reviewFrag)
+        }
         step.classList.toggle("form__page--active", index === currentStep)
     })
+    // here is where we need to add for review step
+}
+
+function showReview(){
+    const reviewFragment = document.createDocumentFragment();
+    // get all the filled input in each step section
+    const sectionsFilledInput = getFilledInSections();
+                
+    // need to change this to more compoment based
+    const personalSection = document.createElement('div');
+    const shippingSection = document.createElement('div');
+    const paymentSection = document.createElement('div');
+
+    personalSection.setAttribute('class', "section-card");
+    shippingSection.setAttribute('class', "section-card");
+    paymentSection.setAttribute('class', "section-card");
+
+    let personalTitle = document.createElement('h3')
+    personalTitle.setAttribute('class', 'section-card__title')
+    personalTitle.innerText = "Customer Information"
+    let shippingTitle = document.createElement('h3')
+    shippingTitle.setAttribute('class', 'section-card__title')
+    shippingTitle.innerText = "Shipping Information"
+    let paymentTitle = document.createElement('h3')
+    paymentTitle.setAttribute('class', 'section-card__title')
+    paymentTitle.innerText = "Payment Information"
+
+    personalSection.appendChild(personalTitle)
+    shippingSection.appendChild(shippingTitle)
+    paymentSection.appendChild(paymentTitle)
+
+    personalSection.appendChild(createReviewSection(sectionsFilledInput.personal));
+    shippingSection.appendChild(createReviewSection(sectionsFilledInput.shipping));
+    paymentSection.appendChild(createReviewSection(sectionsFilledInput.payment));
+
+    reviewFragment.appendChild(personalSection);
+    reviewFragment.appendChild(shippingSection);
+    reviewFragment.appendChild(paymentSection);
+
+    // add a button to submit
+    let prevBtn = document.createElement('button');
+    let submitBtn = document.createElement('button');
+    let btnGroup = document.createElement('div');
+
+    prevBtn.setAttribute('class', 'form__button');
+    prevBtn.setAttribute('type', 'button');
+    prevBtn.dataset.prev = ''
+    prevBtn.innerText = 'Prev';
+
+    submitBtn.setAttribute('type', 'submit');
+    submitBtn.innerText = 'Submit'
+    submitBtn.setAttribute('class', 'form__button');
+
+    btnGroup.setAttribute('class', 'btnGroup');
+    btnGroup.appendChild(prevBtn);
+    btnGroup.appendChild(submitBtn);
+
+    reviewFragment.appendChild(btnGroup);
+            
+    return reviewFragment; 
 }
 
 function showProgress(){
@@ -85,6 +130,7 @@ function showProgress(){
     })
 }
 
+// function to divide the page of form into different sections
 function getFilledInSections(){
     let personal = []; 
     let shipping =  [];
@@ -103,7 +149,6 @@ function getFilledInSections(){
     return { personal:personal, shipping:shipping, payment:payment};
 }
 
-
 // each section is a card 
 function createReviewSection(sectionData){
     const section = document.createDocumentFragment();
@@ -111,8 +156,22 @@ function createReviewSection(sectionData){
     // looping the array
     sectionData.forEach( inputGroup => {
         // get the label and value
+        
         const label = inputGroup.querySelector('.input-group__label').innerText;
-        const value = inputGroup.querySelector('.input-group__input').value;
+        const input = inputGroup.querySelector('.input-group__input');
+        let inputVal = input.value;
+
+        // if the input type if radio need to handle it specifically and find out which one is checked 
+        if(input.type  === 'radio'){
+            let cardTypeGroup = [...inputGroup.children] // the input group has label and the rest are radio input
+            for(let i = 1; i < cardTypeGroup.length; i++){
+                let cardType = [...cardTypeGroup[i].children]
+                if(cardType[0].checked){
+                    inputVal = cardType[0].value;
+                }
+            }
+        }
+
         // create a div for label and value and wrap it in a div 
         const inputShowCase = document.createElement('div');
         const inputShowCaseLabel = document.createElement('p');
@@ -123,7 +182,7 @@ function createReviewSection(sectionData){
         inputShowCaseValue.setAttribute('class', 'input-showcase__value');
 
         inputShowCaseLabel.innerText = label;
-        inputShowCaseValue.innerText = value;
+        inputShowCaseValue.innerText = inputVal.length === 0? "N/A" : inputVal;
 
         // append to the outerdiv
         inputShowCase.appendChild(inputShowCaseLabel);
@@ -133,9 +192,33 @@ function createReviewSection(sectionData){
         section.appendChild(inputShowCase);
     })
 
-
     return section;
 
+}
+
+function createModal(status){
+    const modal = document.createDocumentFragment();
+
+    const modalDiv = document.createElement('div');
+    modalDiv.setAttribute('class', 'modal');
+
+    const modalIcon =  document.createElement('div');
+    const modalMsg = document.createElement('p');
+
+    modalIcon.setAttribute('class' ,'modal__icon');
+    modalMsg.setAttribute('class' ,'modal__msg');
+
+    if(status === 200){
+        modalDiv.classList.add('modal--success');
+        modalIcon.classList.add('modal__icon--success');
+        modalMsg.classList.add('modal__msg--success');
+    }else{
+        modalDiv.classList.add('modal--error')
+        modalIcon.classList.add('modal__icon--error');
+        modalMsg.classList.add('modal__msg--error');
+    }
+
+    return modal
 }
 
 

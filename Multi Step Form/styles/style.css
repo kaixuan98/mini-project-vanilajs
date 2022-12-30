@@ -51,14 +51,21 @@
 
 .progress-bar__label {
   font-size: 10px;
-  font-family: "Quicksand", sans-serif;
+  font-family: "Josefin Sans", sans-serif;
   font-weight: 500;
   color: #b1aeae;
 }
 
+.form {
+  border: black solid 2px;
+}
+
+.form__review {
+  display: none;
+}
+
 .form__page {
   display: none;
-  border: black solid 2px;
 }
 .form__page .form__title {
   text-align: center;
@@ -76,6 +83,50 @@
   flex-direction: column;
 }
 
+.form__review--active {
+  display: flex;
+  flex-direction: column;
+}
+
+.section-card {
+  border: 2px solid #d3d3d3;
+  margin: 16px 0 16px 0;
+  border-radius: 4px;
+}
+.section-card .section-card__title {
+  font-family: "Cardo", serif;
+  font-size: 1.5em;
+  text-align: center;
+}
+
+.input-showcase {
+  display: flex;
+  flex-direction: column;
+  border: 1px solid #d3d3d3;
+  border-radius: 3px;
+  margin: 0 8px 8px 8px;
+  padding: 4px;
+}
+.input-showcase .input-showcase__label {
+  font-size: 0.75em;
+  font-family: "Cardo", serif;
+  font-weight: 600;
+  color: #b1aeae;
+  margin: 0 0 4px 4px;
+}
+.input-showcase .input-showcase__value {
+  font-size: 1em;
+  font-family: "Josefin Sans", sans-serif;
+  margin: 0 0 0 4px;
+}
+
+.form__btnGroup {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  align-items: center;
+}
+
 .input-group {
   display: flex;
   flex-direction: column;
@@ -89,8 +140,4 @@
 .input-group__help {
   font-size: 0.75em;
   color: #afaeae;
-}
-
-.section-card {
-  border: 2px solid green;
 }/*# sourceMappingURL=style.css.map */
