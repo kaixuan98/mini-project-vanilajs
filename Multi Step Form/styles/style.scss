@@ -64,9 +64,7 @@
 }
 
 // form 
-.form{
-    border: black solid 2px;
-}
+
 .form__review{
     display: none;
 }
@@ -75,6 +73,8 @@
     display: none;
 
     .form__title{
+        font-size: 1.5em;
+        font-family:'Cardo', serif; 
         text-align: center;
     }
 }
@@ -110,6 +110,8 @@
     }
 }
 
+
+
 .input-showcase{
     display: flex;
     flex-direction: column;
@@ -140,6 +142,43 @@
     align-items: center;
 }
 
+// button css from https://getcssscan.com/css-buttons-examples
+.form__button{
+    align-items: center;
+    appearance: button;
+    background-color: #0276FF;
+    border-radius: 8px;
+    border-style: none;
+    box-shadow: rgba(255, 255, 255, 0.26) 0 1px 2px inset;
+    box-sizing: border-box;
+    color: #fff;
+    cursor: pointer;
+    display: flex;
+    flex-direction: row;
+    flex-shrink: 0;
+    font-family: "RM Neue",sans-serif;
+    font-size: 100%;
+    line-height: 1.15;
+    margin: 0;
+    padding: 10px 21px;
+    text-align: center;
+    text-transform: none;
+    transition: color .13s ease-in-out,background .13s ease-in-out,opacity .13s ease-in-out,box-shadow .13s ease-in-out;
+    user-select: none;
+    -webkit-user-select: none;
+    touch-action: manipulation;
+
+    &:active {
+        background-color: #006AE8;
+    }
+    
+    &:hover {
+        background-color: #1C84FF;
+    }
+
+}
+
+
 // the form group will be left and right
 
 
@@ -147,6 +186,7 @@
 .input-group{
     display: flex;
     flex-direction: column;
+    margin-bottom: 16px;
 }
 
 .input-group--row{
@@ -154,9 +194,54 @@
     flex-direction: row;
 }
 
+.input-group__label, .input-group__input{
+    font-size: 1em;
+    font-family: 'Josefin Sans', sans-serif;
+    margin: 0 0 4px 0 ;
+}
+
+.input-group__input{
+    margin: 0 0 8px 0;
+    padding: 8px;
+    border-radius: 10px;
+}
+
+
 .input-group__help{
     font-size: 0.75em;
     color: #afaeae;
+}
 
+// create a modal
+.modal{
+    position: fixed; 
+    z-index: 1; 
+    padding-top: 10vh;
+    left: 0; 
+    top: 0;
+    width: 100%; 
+    height: 100%;
+    overflow: auto;
+    background-color: rgb(0,0,0); 
+    background-color: rgba(0,0,0,0.4); 
+}
+
+.modal__content{
+    background-color: #fff;
+    width: 80%;
+    margin: auto;
+    padding: 20px;
+    border: 1px solid #888;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.modal__msg{
+    text-align: center;
+}
+
+.modal--hide{
+    display: none;
 }
 

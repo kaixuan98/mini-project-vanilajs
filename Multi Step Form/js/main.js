@@ -29,6 +29,7 @@ multiStepForm.addEventListener("click" , async function (e) {
         } else if (e.target.type === 'submit') {
             // if user pressed submit, it will send the response to the backend 
             e.preventDefault();
+            incrementor = 1;
             const formData = new FormData(multiStepForm);
             res = await fetch('http://localhost:3000/form/submit', {
                 method: 'POST',
@@ -135,7 +136,7 @@ function showReview(){
     submitBtn.innerText = 'Submit'
     submitBtn.setAttribute('class', 'form__button');
 
-    btnGroup.setAttribute('class', 'btnGroup');
+    btnGroup.setAttribute('class', 'form__btnGroup');
     btnGroup.appendChild(prevBtn);
     btnGroup.appendChild(submitBtn);
 
@@ -224,6 +225,9 @@ function createModal(status){
     const modalDiv = document.createElement('div');
     modalDiv.setAttribute('class', 'modal');
 
+    const modalContent = document.createElement('div');
+    modalContent.setAttribute('class', 'modal__content');
+
     const modalIcon =  document.createElement('div');
     const modalMsg = document.createElement('p');
 
@@ -233,6 +237,7 @@ function createModal(status){
     if(status === 200){
         modalDiv.classList.add('modal--success');
         modalIcon.classList.add('modal__icon--success');
+        // adding an icon here
         modalMsg.classList.add('modal__msg--success');
         modalMsg.innerText='Order Processes Successfully!'
     }else{
@@ -242,9 +247,25 @@ function createModal(status){
         modalMsg.innerText='Error during transaction. Please try again later.'
     }
 
+    const close = document.createElement('button');
+    close.setAttribute('class', 'form__button');
+    close.innerText = 'Close'; 
+
+    close.addEventListener('click', function(e) {
+        currentStep = 0 ;
+        showCurrentStep();
+        showProgress();
+        modalDiv.classList.add('modal--hide')
+        multiStepForm.reset();
+    })
+
+    modalContent.appendChild(modalIcon);
+    modalContent.appendChild(modalMsg);
+    modalContent.appendChild(close);
+
+    modalDiv.appendChild(modalContent);
     modal.appendChild(modalDiv);
-    modal.appendChild(modalIcon);
-    modal.appendChild(modalMsg);
+
 
     return modal;
 }
