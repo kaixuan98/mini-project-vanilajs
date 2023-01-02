@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./styles/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cardo:wght@400;700&family=Josefin+Sans:ital,wght@0,300;0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+    <title>Multi Step Form</title>
+</head>
+<body>
+    <div id="page">
+        <!-- progress bar start -->
+        <div class="progress-bar">
+            <div class="progress-bar__step" data-step>
+                <div class="progress-bar__icon">1</div>
+                <div class="progress-bar__label">Customer</div>
+            </div>
+            <div class="progress-bar__line"></div>
+            <div class="progress-bar__step" data-step>
+                <div class="progress-bar__icon">2</div>
+                <div class="progress-bar__label">Shipping</div>
+            </div>
+            <div class="progress-bar__line"></div>
+            <div class="progress-bar__step" data-step>
+                <div class="progress-bar__icon">3</div>
+                <div class="progress-bar__label">Payment</div>
+            </div>
+            <div class="progress-bar__line"></div>
+            <div class="progress-bar__step" data-step>
+                <div class="progress-bar__icon">4</div>
+                <div class="progress-bar__label">Review</div>
+            </div>
+        </div>
+        <!-- progress bar end  -->
+        <form class="form">
+            <div class="form__page">
+                <h3 class="form__title">Customer Info</h3>
+                <div class="form__group form__group--column">
+                    <div class="input-group">
+                        <label class="input-group__label" for="firstName">First Name</label>
+                        <input class="input-group__input" type="text" name="firstName" required>
+                    </div>
+                    <div class="input-group">
+                        <label class="input-group__label" for="lastName">Last Name</label>
+                        <input class="input-group__input" type="text" name="lastName" required>
+                    </div>
+                    <div class="input-group">
+                        <label class="input-group__label" for="email">Email</label>
+                        <input class="input-group__input" type="email" name="email" required>
+                    </div>
+                    <div class="input-group">
+                        <label class="input-group__label" for="mobile">Contact Number</label>
+                        <input class="input-group__input" type="tel" name="mobile" pattern="[0-9]{3}[0-9]{3}[0-9]{4}" required>
+                        <span class="input-group__help">
+                            Example: 1234567890.
+                        </span>
+                    </div>
+                </div>
+                <div class="form__btnGroup">
+                    <button type="button" class="form__button" data-next>Next</button>
+                </div>
+            </div>
+            <div class="form__page">
+                <h3 class="form__title">Shipping Address</h3>
+                <div class="form__group form__group--column">
+                    <div class="input-group">
+                        <label class="input-group__label" for="Address1">Street address</label>
+                        <input class="input-group__input" type="text" name="Address1" required>
+                    </div>
+                    <div class="input-group">
+                        <label class="input-group__label" for="Address2">Street address 2 (optional)</label>
+                        <input class="input-group__input" type="text" name="Address2">
+                    </div>
+                    <div class="input-group">
+                        <label class="input-group__label" for="City">City</label>
+                        <input class="input-group__input" type="text" name="City" required>
+                    </div>
+                    <div class="input-group">
+                        <label class="input-group__label" for="Province">Province</label>
+                        <select class="input-group__input input-group__input--dropdown" name="Province" required>
+                            <option value="AB">Alberta</option>
+                            <option value="BC">British Columbia</option>
+                            <option value="MB">Manitoba</option>
+                            <option value="NB">New Brunswick</option>
+                            <option value="NL">Newfoundland and Labrador</option>
+                            <option value="NT">Northwest Territories</option>
+                            <option value="NS">Nova Scotia</option>
+                            <option value="NU">Nunavut</option>
+                            <option value="ON">Ontario</option>
+                            <option value="PE">Prince Edward Island</option>
+                            <option value="QC">Quebec</option>
+                            <option value="SK">Saskatchewan</option>
+                            <option value="YT">Yukon</option>
+                        </select>
+                    </div>
+                    <div class="input-group">
+                        <label class="input-group__label" for="Zip">Zip Code</label>
+                        <input class="input-group__input" type="text" name="Zip" pattern="[A-Z]{1}[0-9]{1}[A-Z]{1} [0-9]{1}[A-Z]{1}[0-9]{1}" required>
+                        <span class="input-group__help">
+                            Example: A1A 1A1
+                        </span>
+                    </div>
+                </div>
+                <div class="form__btnGroup">
+                    <button type="button" class="form__button" data-prev>Prev</button>
+                    <button type="button" class="form__button" data-next>Next</button>
+                </div>
+            </div>
+            <div class="form__page">
+                <h3 class="form__title">Payment</h3>
+                <div class="form__group form__group--column">
+                    <div class="input-group">
+                        <label class="input-group__label" for="cardType">Card Type</label>
+                        <div class="input-group--row">
+                            <input id="mastercard" class="input-group__input" type="radio" name="cardType" value="Mastercard" required>
+                            <label for="mastercard" class="input-group__label">Mastercard</label>
+                        </div>
+                        <div class="input-group--row">
+                            <input id="visa" class="input-group__input" type="radio" name="cardType" value="Visa" required>
+                            <label for="visa" class="input-group__label">Visa</label>
+                        </div>
+                    </div>
+                    <div class="input-group">
+                        <label class="input-group__label" for="cardNo">Credit/Debit Card Number</label>
+                        <input class="input-group__input" type="text" name="cardNo" required>
+                    </div>
+                    <div class="input-group">
+                        <label class="input-group__label" for="Expiration">Expiration(MM/YY)</label>
+                        <input class="input-group__input" type="text" name="Expiration" required >
+                    </div>
+                    <div class="input-group">
+                        <label class="input-group__label" for="CVV">CVV</label>
+                        <input class="input-group__input" type="text" name="CVV" required>
+                    </div>
+                </div>
+                <div class="form__btnGroup">
+                    <button type="button" class="form__button" data-prev>Prev</button>
+                    <button type="button" class="form__button" data-next>Next</button>
+                </div>
+            </div>
+            <div class="form__review">
+            </div>
+        </form>
+        <div class="modal"> 
+
+        </div>
+    </div>
+    <script src="./js/main.js"></script>
+</body>
+</html>

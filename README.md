@@ -47,7 +47,7 @@ This is a mini project that create a simple recipe web explorer. User are able t
 
 **Lang Used:** HTML/CSS, JavaScript, SCSS
 
-**Concept learned:** ES6 Class and Modules to create dynamic web component, Event Handling and Propagation, API Fetching 
+**Concept learned:** ES6 Class and Modules to create dynamic web component, Event Handling and Propagation, Fetch API
 
 **API Used:** [Spoonacular API](https://spoonacular.com/food-api)
 
@@ -58,3 +58,19 @@ How to run this project?
 1. fork this repo 
 2. Compile a SASS compiler on vsCode 
 3. Open a new terminal and Run the `index.js` file in Recipe Rating folder.
+
+### Mini Project 4 - MultiStep Form 
+--- 
+This is a responsive multistep form. Form is everywhere, whether is a simple authentication or a complicated form to extract user information. This form is a mimic process of an ecomerce user information (contact, shipping and payment) form. The form is split into 3 steps and 1 extra review steps. A progress bar is implement for user to see his/her progress in the form. 
+
+**Concept learned:** Event Bubbling(multistep form differents clicks), Fetch API(sending form's post request on a nodejs + express backend), HTML form validator, forms, mobile first design, BEM naming used in this project
+
+**Show Case:** [video](https://youtu.be/YYOp2Cs4Lzg)
+
+How to run this project?
+1. fork this repo 
+2. In terminal, run `cd API-Key-Relay` and `npm run dev` - this is to run the nodejs backend for this project
+3. Compile a SASS compiler on VsCode 
+4. Used live server on Vscode to run the `index.js` file in Multi Step Form folder. 
+
+

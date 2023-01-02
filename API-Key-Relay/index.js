@@ -7,6 +7,7 @@ const port = 3000;
 
 const unsplash = require("./unsplash");
 const spoonacular = require("./spoonacular")
+const formRequest = require('./form');
 
 app.use(express.json());
 
@@ -31,8 +32,13 @@ const limiter = rateLimit({
 });
 app.use(limiter);
 
+app.use(express.urlencoded({
+    extended: true
+}))
+
 app.use("/unsplash", unsplash);
 app.use("/spoonacular", spoonacular);
+app.use("/form", formRequest);
 
 //test route
 app.use('/', (req, res) => {
@@ -40,8 +46,6 @@ app.use('/', (req, res) => {
         .send('ok')
         .end();
 });
-
-// unsplash route 
 
 app.listen(port , () => console.log(`App listening at port ${port}`));
 
