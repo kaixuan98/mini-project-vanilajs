@@ -4,6 +4,7 @@ const multiStepForm = document.querySelector(".form");
 const formSteps = [...document.querySelectorAll('.form__page')]; 
 const progressSteps = [...document.querySelectorAll('.progress-bar__step')];
 const reviewPage = document.querySelector('.form__review');
+const responseModal = document.querySelector('.modal')
 
 
 // find and set the current step in my form
@@ -18,31 +19,38 @@ if (currentStep < 0 ){
     showProgress();
 }
 
-// add click event on the next and prev button (event bubbling to multisetp form)
-multiStepForm.addEventListener("click" , async function (e) {
+// the click event of the whole form is handle at the top of the form (event bubbling )
+// there are 3 types of clicks - next , prev and submit
+multiStepForm.addEventListener("click" , function (e) {
         let incrementor;
-        let res ; 
-        if (e.target.matches('[data-next]')) {
+
+        // handle which type of click 
+        if (e.target.matches('[data-next]')) {  // click next in the form step
             incrementor = 1;
-        } else if (e.target.matches('[data-prev]')) {
+        } else if (e.target.matches('[data-prev]')) { // click prev in the form step 
             incrementor = -1;
-        } else if (e.target.type === 'submit') {
-            // if user pressed submit, it will send the response to the backend 
+        } else if (e.target.type === 'submit') {  // click submit in the form step
             e.preventDefault();
             incrementor = 1;
             const formData = new FormData(multiStepForm);
-            res = await fetch('http://localhost:3000/form/submit', {
+            fetch('http://192.168.0.192:3000/form/submit', {
                 method: 'POST',
                 body: formData,
             }).then(function (response) {
-                // page.appendChild(createModal(response.status));
+                responseModal.classList.toggle('modal--active', response.status > 0 )
+                if(responseModal.childElementCount !== 0){
+                    while(responseModal.firstChild){
+                        responseModal.removeChild(responseModal.firstChild);
+                    }
+                }
+                responseModal.appendChild(showModal(response.status));
                 return response.status;
             }).catch(function (error) {
                 console.log(error);
             });
-        }
+        } // other clicks like click to focus on input wll not effect the increment of steps
         else {
-            incrementor = 0; //other than button, it will not increment
+            incrementor = 0; 
         }
 
         // validate the form before move to the next step
@@ -60,11 +68,9 @@ multiStepForm.addEventListener("click" , async function (e) {
             showProgress();
         }
 
-        if(res === 200){
-            console.log([...createModal(res).children]);
-            page.appendChild(createModal(res));
-        }
     })
+
+
 
 //  helper functions
 function showCurrentStep(){
@@ -154,6 +160,53 @@ function showProgress(){
     })
 }
 
+function showModal(status){
+    const modal = document.createDocumentFragment();
+
+    const modalContent = document.createElement('div');
+    modalContent.setAttribute('class', 'modal__content');
+
+    const modalIcon =  document.createElement('div');
+    const modalMsg = document.createElement('p');
+
+    modalIcon.setAttribute('class' ,'modal__icon');
+    modalMsg.setAttribute('class' ,'modal__msg');
+
+    if(status === 200){
+        responseModal.classList.add('modal--success');
+        modalIcon.classList.add('modal__icon--success');
+        // adding an icon here
+        modalMsg.classList.add('modal__msg--success');
+        modalMsg.innerText='Order Processes Successfully!'
+    }else{
+        responseModal.classList.add('modal--error')
+        modalIcon.classList.add('modal__icon--error');
+        modalMsg.classList.add('modal__msg--error');
+        modalMsg.innerText='Error during transaction. Please try again later.'
+    }
+
+    const close = document.createElement('button');
+    close.setAttribute('class', 'form__button');
+    close.innerText = 'Close'; 
+
+    close.addEventListener('click', function(e) {
+        currentStep = 0 ;
+        showCurrentStep();
+        showProgress();
+        responseModal.classList.remove('modal--active')
+        multiStepForm.reset();
+    })
+
+    modalContent.appendChild(modalIcon);
+    modalContent.appendChild(modalMsg);
+    modalContent.appendChild(close);
+
+    modal.appendChild(modalContent);
+
+    return modal;
+}
+
+
 // function to divide the page of form into different sections
 function getFilledInSections(){
     let personal = []; 
@@ -217,57 +270,6 @@ function createReviewSection(sectionData){
 
     return section;
 
-}
-
-function createModal(status){
-    const modal = document.createDocumentFragment();
-
-    const modalDiv = document.createElement('div');
-    modalDiv.setAttribute('class', 'modal');
-
-    const modalContent = document.createElement('div');
-    modalContent.setAttribute('class', 'modal__content');
-
-    const modalIcon =  document.createElement('div');
-    const modalMsg = document.createElement('p');
-
-    modalIcon.setAttribute('class' ,'modal__icon');
-    modalMsg.setAttribute('class' ,'modal__msg');
-
-    if(status === 200){
-        modalDiv.classList.add('modal--success');
-        modalIcon.classList.add('modal__icon--success');
-        // adding an icon here
-        modalMsg.classList.add('modal__msg--success');
-        modalMsg.innerText='Order Processes Successfully!'
-    }else{
-        modalDiv.classList.add('modal--error')
-        modalIcon.classList.add('modal__icon--error');
-        modalMsg.classList.add('modal__msg--error');
-        modalMsg.innerText='Error during transaction. Please try again later.'
-    }
-
-    const close = document.createElement('button');
-    close.setAttribute('class', 'form__button');
-    close.innerText = 'Close'; 
-
-    close.addEventListener('click', function(e) {
-        currentStep = 0 ;
-        showCurrentStep();
-        showProgress();
-        modalDiv.classList.add('modal--hide')
-        multiStepForm.reset();
-    })
-
-    modalContent.appendChild(modalIcon);
-    modalContent.appendChild(modalMsg);
-    modalContent.appendChild(close);
-
-    modalDiv.appendChild(modalContent);
-    modal.appendChild(modalDiv);
-
-
-    return modal;
 }
 
 
