@@ -61,7 +61,7 @@ How to run this project?
 
 ### Mini Project 4 - MultiStep Form 
 --- 
-This is a responsive multistep form. Form is everywhere, whether is a simple authentication or a complicated form to extract user information. This form is a mimic process of an ecomerce user information (contact, shipping and payment) form. The form is split into 3 steps and 1 extra review steps. A progress bar is implement for user to see his/her progress in the form. 
+This is a responsive multistep form. Form is everywhere, whether is a simple authentication or a complicated form to extract user information. This form is a sample process of an ecommerce user information form with sections such as contact, shipping and payment. The form is split into 3 steps and 1 review steps. A progress bar is implement for user to see his/her progress in the form. 
 
 **Concept learned:** Event Bubbling(multistep form differents clicks), Fetch API(sending form's post request on a nodejs + express backend), HTML form validator, forms, mobile first design, BEM naming used in this project
 
