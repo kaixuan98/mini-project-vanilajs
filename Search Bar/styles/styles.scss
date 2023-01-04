@@ -1,6 +1,7 @@
 body{
     padding: 0;
     margin: 0; 
+    background-color:  #CDDBDD;
 }
 
 // mobile first design
@@ -11,6 +12,20 @@ body{
     max-width: 80%;
     margin: 10vh 10% 0 10%;
     height: 100vh; 
+
+    h2{
+        font-family: 'Raleway', sans-serif;
+        margin-bottom: 0;
+        gap: 0.2em;
+        color: #272635;
+    }
+}
+
+.page__subtitle{
+    font-family: 'Raleway', sans-serif;
+    font-size: 0.75em;
+    color:  #3D85B8;
+    margin-top: 0;
 }
 
 
@@ -21,7 +36,12 @@ body{
 
 .search-bar{
     width: 100%;
-    border: 1px grey solid;
+    border: 2px #3D85B8 solid;
+    padding: 12px; 
+    border-radius: 8px;
+    font-family: 'Raleway', sans-serif;
+    color:  #3D85B8; 
+    font-size: 1em;
 }
 
 
@@ -29,6 +49,7 @@ body{
 // search result 
 .search-result__wrapper{
     width: 100%;
+    padding: 8px;
 }
 
 .search-result__list{ // children are the cards so if we flex-direction the cards are all stacked
@@ -42,9 +63,14 @@ body{
     overflow-y: scroll;
     display: none; 
     height: 50vh; 
+    border-radius: 8px;
 }
 .search-result__list--active{
     display: block;
+}
+.search-result__list--showBg{
+    background-color: #fff;
+    box-shadow: 0 3px 10px rgb(0 0 0 / 0.2);
 }
 
 
@@ -54,13 +80,12 @@ body{
     flex-direction: row;
     align-items: center;
     justify-content: space-around;
-
-    border: 1px grey solid;
-    width: 100%;
+    padding: 12px;
 }
 
 .result-card__imgContainer{
     width: 30%;
+    margin-right: 4px; 
 
     img{
         width: 100%;
@@ -71,6 +96,27 @@ body{
     width: 70%;
 }
 
+.result-card__contentContainer{
+    p{
+        font-family:'Raleway', sans-serif; 
+    }
+}
+
+.result-card__title{
+    font-size: 1em; 
+    margin:0 0 4px 0 ;
+}
+.result-card__authors{
+    font-size: 0.75em;
+    margin: 12px 0 4px 0; 
+}
+
+.result-card__pubs{
+    font-size: 0.5em; 
+    font-style: italic;
+    color: #919295;
+    margin: 0 0 12px 0;
+}
 
 
 // Desktop size

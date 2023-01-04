@@ -13,6 +13,7 @@ searchbar.addEventListener('keyup', debounceSearch)
 // click event bubble to the main page and handle there
 // if I click the input, need to show the list
 main.addEventListener('click', (e) => {
+    resultList.classList.toggle('search-result__list--showBg', searchTerm > 0 )
     resultList.classList.toggle('search-result__list--active', e.target.nodeName === 'INPUT')
     if(e.target.id === 'main'){
         // clear out the input if user clicked outside of the input
@@ -25,6 +26,7 @@ main.addEventListener('click', (e) => {
         }
     }
 })
+
 
 
 // helper functions
@@ -42,7 +44,6 @@ async function getBookResults(searchTerm){
 
     // if the search term is empty no point checking
     if(searchTerm.length > 0){
-        console.log("Here is fetching");
         const booksStream = await fetch(url);
         const bookData = await booksStream.json();
         // check is there any books suggestion in the result list - remove the list 
@@ -50,9 +51,11 @@ async function getBookResults(searchTerm){
             resultList.removeChild(resultList.firstChild);
         }
         // only then will append new result to the list
+        resultList.classList.toggle('search-result__list--showBg', searchTerm.length > 0 )
         resultList.appendChild(showBookResult(bookData));
         return bookData; 
     }else{
+        resultList.classList.remove('search-result__list--showBg')
         while(resultList.childElementCount !== 0 ){
             resultList.removeChild(resultList.firstChild);
         }
@@ -92,8 +95,11 @@ function showBookCard(book){
     }
 
     const titleHTML = document.createElement('p');
+    titleHTML.setAttribute('class', 'result-card__title');
     const authorsHTML = document.createElement('p');
+    authorsHTML.setAttribute('class', 'result-card__authors');
     const publisherHTML = document.createElement('p');
+    publisherHTML.setAttribute('class', 'result-card__pubs');
     const imgHTML = document.createElement('img'); 
 
     titleHTML.innerText = title; 
