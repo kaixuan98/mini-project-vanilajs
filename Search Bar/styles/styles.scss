@@ -1,0 +1,78 @@
+body{
+    padding: 0;
+    margin: 0; 
+}
+
+// mobile first design
+#main{  // the main has two div, top - search bar ; bottom - result list
+    display: flex;
+    flex-direction: column ;
+    align-items: center;
+    max-width: 80%;
+    margin: 10vh 10% 0 10%;
+    height: 100vh; 
+}
+
+
+// search bar 
+.search-bar__wrapper{
+    width: 100%;
+}
+
+.search-bar{
+    width: 100%;
+    border: 1px grey solid;
+}
+
+
+
+// search result 
+.search-result__wrapper{
+    width: 100%;
+}
+
+.search-result__list{ // children are the cards so if we flex-direction the cards are all stacked
+    width : 100%; 
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    list-style-type: none;
+    margin: 0; 
+    padding: 0; 
+    overflow-y: scroll;
+    display: none; 
+    height: 50vh; 
+}
+.search-result__list--active{
+    display: block;
+}
+
+
+// searched card (each)- 2 element (img and content) 
+.result-card{ // each element in card will stack 
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-around;
+
+    border: 1px grey solid;
+    width: 100%;
+}
+
+.result-card__imgContainer{
+    width: 30%;
+
+    img{
+        width: 100%;
+    }
+}
+
+.result-card__contentContainer{
+    width: 70%;
+}
+
+
+
+// Desktop size
+@media only screen and (min-width: 1024px ) {
+}

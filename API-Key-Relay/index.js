@@ -8,6 +8,7 @@ const port = 3000;
 const unsplash = require("./unsplash");
 const spoonacular = require("./spoonacular")
 const formRequest = require('./form');
+const googleBooks = require('./GoogleBooks');
 
 app.use(express.json());
 
@@ -39,6 +40,7 @@ app.use(express.urlencoded({
 app.use("/unsplash", unsplash);
 app.use("/spoonacular", spoonacular);
 app.use("/form", formRequest);
+app.use("/searchBook", googleBooks);
 
 //test route
 app.use('/', (req, res) => {
