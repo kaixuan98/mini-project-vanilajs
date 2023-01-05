@@ -74,3 +74,19 @@ How to run this project?
 4. Used live server on Vscode to run the `index.js` file in Multi Step Form folder. 
 
 
+### Mini Project 5 - Suggestion Book Search
+---
+Searching is an essential UI in any website, whether is searching a product and ecommerce site or a search of video on a streaming site, it is an inevitable feature.
+In this mini project, the search bar are used to search books. This search bar has a list of suggestion that will help user to find thier desire book. 
+
+**Concept Learned:** Debounce function and web responsive design 
+
+**API used:** Google Book API
+
+**Show Case:** [video](https://youtu.be/54W2QVYy_Zw)
+
+How to run this project?
+1. fork this repo 
+2. Compile a SASS compiler on VsCode 
+3. Used live server on Vscode to run the `index.js` file in Search Bar folder. 
+
