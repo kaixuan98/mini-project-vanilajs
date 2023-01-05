@@ -1,7 +1,9 @@
 // url to search books: https://www.googleapis.com/books/v1/volumes?q=${keywords}
+// url to request a specific book: https://www.googleapis.com/books/v1/volumes/{data-id}
 const mainPage = document.querySelector('#main');
 const searchbar = document.querySelector('.search-bar');
-const resultList = document.querySelector('.search-result__list')
+const resultList = document.querySelector('.search-result__list');
+const singleBook = document.querySelector('.book__wrapper')
 
 let searchTerm = searchbar.value.trim(); 
 // the debounce will pass down the event to the getbookresult
@@ -15,7 +17,8 @@ searchbar.addEventListener('keyup', debounceSearch)
 main.addEventListener('click', (e) => {
     resultList.classList.toggle('search-result__list--showBg', searchTerm > 0 )
     resultList.classList.toggle('search-result__list--active', e.target.nodeName === 'INPUT')
-    if(e.target.id === 'main'){
+    if(e.target.nodeName !== 'INPUT') {
+        // if the target is the result card -> then show the details under that wrapper
         // clear out the input if user clicked outside of the input
         if(searchbar.value !== ''){
             searchbar.value = '';
@@ -25,6 +28,8 @@ main.addEventListener('click', (e) => {
             resultList.removeChild(resultList.firstChild);
         }
     }
+
+
 })
 
 
@@ -83,7 +88,6 @@ function showBookCard(book){
     const bookContentDiv = document.createElement('div'); // create a content div for title and author
     bookContentDiv.setAttribute('class', 'result-card__contentContainer'); 
 
-
     // set the inner texts
     const title = book.volumeInfo.title; 
     const authors = book.volumeInfo.authors; 
@@ -109,6 +113,23 @@ function showBookCard(book){
 
     bookDiv.dataset.id = book.id; 
 
+    // add click event on each result card
+    // because the click event is inside this function
+    // the scope of this event listener has all the parents variable!! 
+    bookDiv.addEventListener('click', (e) => {
+        const bookLink = `https://www.googleapis.com/books/v1/volumes/${book.id}`;
+        fetch(bookLink)
+            .then(res => res.json())
+            .then( bookdetails => {
+                let bookDet = showBookDetails(bookdetails);
+                if(singleBook.childElementCount > 0){
+                    singleBook.removeChild(singleBook.firstElementChild);
+                }
+                bookDet.appendChild(showBookCategory(bookdetails.volumeInfo.categories))
+                singleBook.appendChild(bookDet);
+            })
+    })
+
     // append to divs 
     bookContentDiv.appendChild(titleHTML);
     bookContentDiv.appendChild(publisherHTML);
@@ -116,11 +137,66 @@ function showBookCard(book){
     bookImgDiv.appendChild(imgHTML);
     bookDiv.appendChild(bookImgDiv);
     bookDiv.appendChild(bookContentDiv);
-    bookCard.appendChild(bookDiv);    
+    bookCard.appendChild(bookDiv);   
 
     return bookCard;
 }
 
+function showBookDetails(bookData){
+    const title = bookData.volumeInfo.title; 
+    const thumbnail = bookData.volumeInfo.imageLinks.thumbnail ; // might not have image links TODO
+    const authors = bookData.volumeInfo.authors; 
+    const ibsn = bookData.volumeInfo.industryIdentifiers; // array have different types
+    const descb = bookData.volumeInfo.description;
+    const pub = bookData.volumeInfo.publisher;
+
+    
+    let range = document.createRange();
+    
+    range.selectNode(document.body);
+    
+    const book = range.createContextualFragment(`
+        <div class="book">
+            <div class="book__top">
+                <div class="book__img-container">
+                <img src=${thumbnail} >
+                </div>
+            <div class="book__content-container">
+                <p class="book__title">${title}</p>
+                <p class="book__publisher">${pub}</p>
+                <p class="book__isbn">IBSN: ${ibsn[0].identifier}</p>
+                <p class="book__author"> <span>by </span>${authors}</p>
+            </div>
+            </div>
+            <div class="book__bottom">
+            
+            <div class="book__description">
+                <p>${descb}</p>
+            </div>
+            </div>
+        </div>
+    `).children[0]
+
+    return book; 
+}
+
+function showBookCategory(categories){
+
+    const pills = document.createDocumentFragment();
+
+    const pillsContainer = document.createElement('div');
+    pillsContainer.setAttribute('class', 'book__categories-container'); 
+
+    categories.forEach( cat => {
+        let pill = document.createElement('div')
+        pill.innerText = cat
+        pill.setAttribute('class', 'book__category')
+        pillsContainer.appendChild(pill);
+    })
+
+    pills.appendChild(pillsContainer);
+    return pills;
+}
 
 
 
