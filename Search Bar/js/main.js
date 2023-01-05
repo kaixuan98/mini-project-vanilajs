@@ -125,7 +125,7 @@ function showBookCard(book){
                 if(singleBook.childElementCount > 0){
                     singleBook.removeChild(singleBook.firstElementChild);
                 }
-                bookDet.appendChild(showBookCategory(bookdetails.volumeInfo.categories))
+                // bookDet.appendChild(showBookCategory(bookdetails.volumeInfo.categories))
                 singleBook.appendChild(bookDet);
             })
     })
@@ -155,8 +155,7 @@ function showBookDetails(bookData){
     
     range.selectNode(document.body);
     
-    const book = range.createContextualFragment(`
-        <div class="book">
+    const bookTop = range.createContextualFragment(`
             <div class="book__top">
                 <div class="book__img-container">
                 <img src=${thumbnail} >
@@ -168,14 +167,23 @@ function showBookDetails(bookData){
                 <p class="book__author"> <span>by </span>${authors}</p>
             </div>
             </div>
-            <div class="book__bottom">
-            
+    `).children[0]
+
+    const bookBottom = range.createContextualFragment(`
+        <div class="book__bottom">
+                
             <div class="book__description">
                 <p>${descb}</p>
             </div>
-            </div>
         </div>
     `).children[0]
+
+    bookBottom.appendChild(showBookCategory(bookData.volumeInfo.categories)); 
+
+    const book = document.createElement('div');
+    book.setAttribute('class', 'book')
+    book.appendChild(bookTop);
+    book.appendChild(bookBottom);
 
     return book; 
 }

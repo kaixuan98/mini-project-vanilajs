@@ -163,8 +163,8 @@ body {
 }
 
 .book__categories-container {
-  display: flex;
-  flex-direction: column;
+  display: grid;
+  grid-template-columns: 1fr;
 }
 .book__categories-container .book__category {
   font-family: "Raleway", sans-serif;
@@ -174,4 +174,47 @@ body {
   color: #fff;
   padding: 8px;
   margin-bottom: 4px;
+}
+
+@media only screen and (min-width: 1024px) {
+  #main {
+    max-width: 70%;
+    margin: 10vh 15% 48px 15%;
+  }
+  .search-result__wrapper {
+    width: 70%;
+    top: 25vh;
+    margin: 5vh 0 0 0;
+  }
+  .result-card__imgContainer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .result-card__imgContainer img {
+    width: 50%;
+  }
+  .book__wrapper {
+    width: 100%;
+  }
+  .book {
+    flex-direction: row;
+  }
+  .book__top {
+    margin-right: 12px;
+    width: 30%;
+  }
+  .book__bottom {
+    width: 70%;
+  }
+  .book__description p {
+    margin-top: 0;
+  }
+  .book__categories-container {
+    grid-template-columns: 1fr 1fr;
+  }
+  .book__category {
+    margin-bottom: 0;
+    margin-right: 8px;
+  }
 }/*# sourceMappingURL=styles.css.map */
