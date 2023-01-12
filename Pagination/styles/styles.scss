@@ -1,0 +1,44 @@
+$accent-colour: #C35440; 
+$secondary-colour: #393836; 
+
+body{
+    background-color: #eae9e3;
+}
+
+
+.pagination__btn-container{
+    display: flex;
+    flex: row;
+    gap: 0.4em;
+}
+
+// basic css on the button
+.pagination__btn{
+    text-align: center;
+    font-family: 'mostra-nuova', 'sans-serif';
+    text-transform: uppercase;
+    font-size: 1em;
+    font-weight: 700;
+    padding: 8px 16px 8px 16px ;
+    background-color: #fff;
+    color: $secondary-colour;
+    border: none; 
+    cursor: pointer;
+}
+
+// active button has a background color 
+.pagination__btn--active{
+    background-color: $accent-colour;
+    color: #fff;
+}
+
+// the button with start, prev, next and end have a border at the left
+.pagination__btn[class*="-page"] {
+    border-left: $accent-colour 4px solid;
+}
+
+
+// disable button 
+.pagination__btn[disabled]{
+    opacity: 0.5;
+}
