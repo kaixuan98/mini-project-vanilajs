@@ -90,3 +90,15 @@ How to run this project?
 2. Compile a SASS compiler on VsCode 
 3. Used live server on Vscode to run the `index.js` file in Search Bar folder. 
 
+### Mini Project 6 - Pagination 
+---
+Pagination is a way to divide huge dataset to smaller chunk and present it to the user. For example, an e-commerce site has 100 items, the dataset can be divided to 10 pages and present 10 items in one page. In most of site, user would select a certain page by clicking on the pagination buttons, and that action will trigger a request to an API for data. In this mini project, each page consists of one movie detail. As user clicked on different pages, it will show different content.
+
+**Show Case:** [video](https://youtu.be/29h23dVOzv8)
+
+**Design Inspired:** [Page Design](https://dribbble.com/shots/14534633--47-Yuval-Harari-Books-99-Days-in-the-Lab) [Pagination](https://dribbble.com/shots/7386930-Pagination) [Color Used](https://github.com/karthik/wesanderson)
+
+How to run this project?
+1. fork this repo 
+2. Compile a SASS compiler on VsCode 
+3. Used live server on Vscode to run the `index.js` file in Pagination folder. 
