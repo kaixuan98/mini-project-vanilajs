@@ -1,8 +1,71 @@
 
 
 const page = document.querySelector('#page'); 
+const movieContainer = document.getElementById('movie__container');
 
-function paginationButton (totalPage, maxPageVisibility = 10, currentPage = 1){
+// fetch data from local path and will return all the movies as the result
+async function fetchData(){
+    let response = await fetch('./data/movies.json');
+    let movies = await response.json(); 
+    return movies; 
+}
+
+// this load the whole page include the intial card and button
+async function loadPage(){
+    
+    let moviesData = await fetchData(); 
+
+    // create all the event first and then hide it based on the button clicked
+    
+    movieContainer.innerHTML = createMovieCard(moviesData[0]);
+    let paginationButtons = null; 
+
+    if(window.innerWidth < 350){
+        paginationButtons = new PaginationButton(moviesData.length,3); 
+        paginationButtons.render(); 
+    }else{
+        paginationButtons = new PaginationButton(moviesData.length,5); 
+        // render out the button group 
+        paginationButtons.render(); 
+    }
+
+    // if the page is clicked then that will be change to active 
+    // if the page is clicked then update the movie card
+    paginationButtons.onChange(e => {
+        console.log('--changed', e.target.value); // On change -> movie the movies
+        movieContainer.innerHTML = createMovieCard(moviesData[e.target.value - 1]);
+        page.style.background = moviesData[e.target.value - 1].bgColor;
+    })
+
+    
+
+}
+
+loadPage();
+
+// --------------------------------------- HELPER FUNCTIONS -------------------------------------------------------------------
+// output will give the current set of array that need to display 
+// arg: total - the number of pages need to shown, max - the max from the data, current - current page number
+function pageNumber(total, max, current){
+
+    const half = Math.floor(max/2); // this is get the half point if the list of number to be shown 
+    let to = max; 
+
+    // if my current page + the remaining half is more than the total can be shown - set the to(current ending) to total 
+    if(current + half >= total){
+        to = total; 
+    }else if (current > half){
+        to = current + half;
+    }
+
+    let from = Math.max(to - max, 0);
+
+    // return the array of pages that will need to show on the front end 
+    return Array.from({length: Math.min(total, max)}, (_, i) => (i + 1) + from); // the + 1 is to round back to page 1 
+}
+
+// paginations buttons
+function PaginationButton (totalPage, maxPageVisibility = 10, currentPage = 1){
     let pages = pageNumber(totalPage, maxPageVisibility, currentPage);  // get the pages that we need to show
     let currentPageBtn = null;  // the current pages is null 
     const buttons = new Map(); // a map with all the buttons, key : the button element, value is it disable for that button (bool)
@@ -24,11 +87,12 @@ function paginationButton (totalPage, maxPageVisibility = 10, currentPage = 1){
         btn.className = `pagination__btn ${cls}`
         btn.textContent = label; 
         btn.disabled = isDisable; 
+
         btn.addEventListener('click', e => {
             handleClick(e); 
             this.update();
             paginationBtnGroup.value = currentPage; 
-            paginationBtnGroup.dispatchEvent(new CustomEvent('change', {detail: {currentPageBtn}}))
+            paginationBtnGroup.dispatchEvent(new CustomEvent('change', {detail: {currentPageBtn}})) // if user clicked then will automatic send a change event to the btn group
         })
 
         return btn; 
@@ -85,8 +149,6 @@ function paginationButton (totalPage, maxPageVisibility = 10, currentPage = 1){
         createPaginationButtons('end', 'pagination__btn--end-page', disabled.end() , () => currentPage = totalPage),
         (btn) => btn.disabled = disabled.end()
     )
-
-    console.log(buttons)
     // append the buttons in map into the fragment 
     buttons.forEach( (_,btn) => frag.appendChild(btn));
     paginationBtnGroup.appendChild(frag);
@@ -109,33 +171,18 @@ function paginationButton (totalPage, maxPageVisibility = 10, currentPage = 1){
 
 }
 
-// build the buttons 
-const paginationButtons = new paginationButton(20,5);
-paginationButtons.render();
-paginationButtons.onChange(e => {
-    console.log('--changed', e.target.value);
-})
+// cards 
+function createMovieCard (movie) {
 
-
-
-
-// helper function to set the current page
-// output will give the current set of array that need to display 
-// arg: total - the number of pages need to shown, max - the max from the data, current - current page number
-function pageNumber(total, max, current){
-
-    const half = Math.floor(max/2); // this is get the half point if the list of number to be shown 
-    let to = max; 
-
-    // if my current page + the remaining half is more than the total can be shown - set the to(current ending) to total 
-    if(current + half >= total){
-        to = total; 
-    }else if (current > half){
-        to = current + half;
-    }
-
-    let from = Math.max(to - max, 0);
-
-    // return the array of pages that will need to show on the front end 
-    return Array.from({length: Math.min(total, max)}, (_, i) => (i + 1) + from); // the + 1 is to round back to page 1 
+    return (`
+        <div class="movie__poster">
+            <p class="movie__poster-bg" style="color: ${movie.titleColor}">${movie.title}</p>
+            <img src=${movie.poster}>
+        </div>
+        <div class="movie__content">
+            <h3 class="movie__title">${movie.title} <span class="movie__year">(${movie.year})</span></h3>
+            <p class="movie__length">${movie.length}</p>
+            <p class="movie__summary">${movie.summary}</p>
+        </div>
+    `)
 }

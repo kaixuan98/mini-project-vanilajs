@@ -1,0 +1,102 @@
+[
+    {
+        "title": "Bottle Rocket",
+        "year": 1996,
+        "genre": ["Comedy", "Crime", "Drama"],
+        "poster":"http://www.movienewsletters.net/photos/003161R1.jpg",
+        "summary": "A group of friends hatches a plan to pull off a simple robbery and go on the run. However, their ensuing escapade turns out to be far from what anyone expected.",
+        "length": "1h 32m",
+        "bgColor": "rgba(203, 35, 20, 0.5)", 
+        "titleColor": "#5f5647"
+    },
+    {
+        "title": "Rushmore",
+        "year": 1998,
+        "genre": ["Comedy", "Drama", "Romance"],
+        "poster": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRsY6q1ee1AauP-CJ4XkH0ZdEHxqwmPg8FsCtV2XLP5coDCH8IT",
+        "summary": "Max, a student at Rushmore Academy, excels at everything except academics. He meets and falls in love with a teacher, Ms Cross, but later discovers that his mentor is also in love with her.",
+        "length": "1h 33m",
+        "bgColor": "#E1BD6D",
+        "titleColor": "#4391d9"
+    },
+    {
+        "title": "The Royal Tenebaums",
+        "year": 2001,
+        "genre": ["Comedy", "Drama"], 
+        "poster": "http://www.movienewsletters.net/photos/032993R1.jpg",
+        "summary": "Three siblings, gifted in their own way, have experienced success but are distant from each other. Their family has to reunite when their estranged father announces he is dying.",
+        "length": "1h 49m",
+        "bgColor": "#F8AFA8",
+        "titleColor": "#FDDDA0"
+    },
+    {
+        "title": "The Life Aquatic with Steve Zissou",
+        "year": 2004,
+        "genre": ["Action", "Adventure", "Comedy"],
+        "poster":"https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcRKQX83f4iKx5vdgz1j3bmdoILTVrx66Jbzv0O37goZOLEQW6Hx",
+        "summary": "While working on a documentary, Steve Zissou's partner gets killed under mysterious circumstances by a shark. Steve and his crew set off on an expedition to hunt it down.",
+        "length": "1h 59m",
+        "bgColor": "#78B7C5",
+        "titleColor": "#EBCC2A"
+    },
+    {
+        "title": "The Darjeeling Limited",
+        "year": 2007,
+        "genre": ["Adventure", "Comedy", "Drama"],
+        "poster": "https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcS_r4mGW22B5gSv4bvAnifOqH8TNgvJcs842brtK4R4Ep88Xrtk",
+        "summary": "After the death of their father, three brothers set out on a train journey across India, in an attempt to rediscover their lost bond. The experiences that they have force them to introspect.",
+        "length": "1h 31m",
+        "bgColor": "#00A08A",
+        "titleColor": "#F2AD00"
+    },
+    {
+        "title": "Fantastic Mr. Fox",
+        "year": 2009,
+        "genre": ["Animation", "Adventure", "Comedy"],
+        "poster": "https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcQNp7RxZZj8beWRmO2ohEew_zmXpgoxj-MBWB9onXG935czAgf6",
+        "summary": "Mr Fox, a family man, goes back to his ways of stealing, unable to resist his animal instincts. However, he finds himself trapped when three farmers decide to kill him and his kind.",
+        "length": "1h 27m",
+        "bgColor": "#E58601",
+        "titleColor": "#E2D200"
+    },
+    {
+        "title": "Moonrise Kingdom",
+        "year": 2012,
+        "genre": ["Comedy", "Drama", "Family"],
+        "poster": "https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcRJHR_u3AeVWOAT9jb6Eq3WWHsHFwXxxJWxfE_FjxjNMcJZCoYr",
+        "summary": "Sam, a 12-year-old orphan, falls in love with Suzy and the two run away to a secluded cove on an island, prompting the entire town to begin a search.",
+        "length": "1h 34m",
+        "bgColor": "#CCC591",
+        "titleColor": "#FAD77B"
+    },
+    {
+        "title": "The Grand Budapest Hotel",
+        "year": 2014,
+        "genre": ["Adventure", "Comedy", "Crime"],
+        "poster": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSDDmHpt0TcHkK9DCv0QU-Xx4WNEVOJnHlj7pVfN61-1mEX2eCG",
+        "summary": "Gustave H, a concierge, is wrongly framed for murder at the Grand Budapest Hotel. In the process of proving his innocence, he befriends a lobby boy.",
+        "length": "1h 40m",
+        "bgColor": "#D8A499",
+        "titleColor": "#7294D4"
+    },
+    {
+        "title": "Isle of Dogs",
+        "year": 2018,
+        "genre": ["Animation", "Adventure", "Comedy"],
+        "poster": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTlfoV5kQt5-R8rsorM0EIFLABrhl2Fjw8ODib_tHAM3QJUAeB8",
+        "summary": "The mayor of Megasaki orders all the dogs to be quarantined on an island after the outbreak of canine flu. A young boy arrives on the isle to search for his dog with the help of a few exiled mongrels.",
+        "length": "1h 42m",
+        "bgColor": "#AA9486",
+        "titleColor": "#79402E"
+    },
+    {
+        "title": "The French Dispatch",
+        "year": 2021,
+        "genre": ["Comedy", "Drama", "Romance"],
+        "poster": "https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcSHZ28VU-SMkaUGIGAT_RsKRFI1sd3wSEftFmPxE0nEA_ex5dzM",
+        "summary": "A love letter to journalists set in an outpost of an American newspaper in a fictional 20th-century French city that brings to life a collection of stories published in 'The French Dispatch.'",
+        "length": "1h 48m",
+        "bgColor": "#7dbfc2",
+        "titleColor": "#a65852"
+    }
+]
