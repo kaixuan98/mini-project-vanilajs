@@ -8,9 +8,6 @@ export default class Kanban{
             const colView = new Column(column.id, column.title);
             this.root.appendChild(colView.element.root)
         });
-
-
-
     }
 
     static columns(){

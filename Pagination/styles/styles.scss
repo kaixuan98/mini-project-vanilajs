@@ -1,0 +1,152 @@
+$accent-colour: #C35440; 
+$secondary-colour: #393836; 
+
+body{
+    background-color: rgba(203, 35, 20, 0.5);
+}
+
+#page{
+    display: flex;
+    flex-direction: column;
+    margin: 5vh 5vw 10vh 5vw;
+    align-items: center;
+}
+
+#page__title{
+    font-family: 'mendl-sans-dusk', 'sans-serif';
+    font-weight: 200;
+    text-align: center;
+    margin-bottom: 16px;
+}
+
+#page_description{
+    font-family: 'mendl-sans-dawn', 'sans-serif';
+    margin: 0 0 48px 0;
+    font-size: 1em;
+    line-height: 1.4;
+}
+
+.pagination__btn-container{
+    display: flex;
+    flex: row;
+    gap: 0.4em;
+}
+
+// basic css on the button
+.pagination__btn{
+    text-align: center;
+    font-family: 'mostra-nuova', 'sans-serif';
+    text-transform: uppercase;
+    font-size: 1em;
+    font-weight: 700;
+    padding: 4px 8px 4px 8px ;
+    background-color: #fff;
+    color: $secondary-colour;
+    border: none; 
+    cursor: pointer;
+}
+
+// active button has a background color 
+.pagination__btn--active{
+    background-color: $accent-colour;
+    color: #fff;
+}
+
+// the button with start, prev, next and end have a border at the left
+.pagination__btn[class*="-page"] {
+    border-left: $accent-colour 4px solid;
+}
+
+
+// disable button 
+.pagination__btn[disabled]{
+    opacity: 0.5;
+}
+
+// movies 
+#movie__container{
+    display: flex;
+    flex-direction: column;
+    margin-top: 32px;
+}
+
+.movie__poster{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    .movie__poster-bg{
+        position: absolute;
+        position: absolute;
+        top: 35vh;
+        left: 10px;
+        right: 10px;
+        bottom: 0;
+        font-family: 'mendl-sans-dusk', 'sans-serif';
+        font-size: 2.4em;
+        height: 50%;
+        text-align: center;
+        color: #5f5647; 
+        opacity: 0.6;
+        line-height:1.3;
+        letter-spacing: 8px;
+        font-weight: 600;
+        text-transform: uppercase;
+    }
+
+    img{
+        width: 50%;
+        z-index: 10;
+        box-shadow: 0px 7px 11px 1px $secondary-colour;
+    }
+}
+
+.movie__content{
+    font-family:  'mendl-sans-dusk', 'sans-serif';
+
+    .movie__title{
+        font-size: 1.5em;
+        letter-spacing: 0.3;
+        margin-bottom: 0;
+    }
+
+    .movie__length{
+        font-style: italic;
+        font-weight: 200;
+        font-size: 1em;
+    }
+
+    .movie__summary{
+        line-height: 1.4;
+    }
+
+}
+
+// Desktop size
+@media only screen and (min-width: 1024px ) {
+
+    #movie__container{
+        flex-direction: row;
+    }
+
+    .movie__poster-bg{
+        display: none;
+    }
+
+    .movie__poster{
+        img{
+            width: 200px; 
+            height: 300px;
+        }
+    }
+
+    .movie__content{
+        margin-left: 32px;
+    }
+
+    .pagination__btn-container{
+        margin-top: 32px;
+    }
+
+
+}
